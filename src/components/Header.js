@@ -6,7 +6,7 @@ const Header = () => {
     return (
 
         <Fragment>
-
+            
             <div className={style.navbar}>
                 <div className={style.logo}>
                     <img src="logo.png" alt=" yok" />
