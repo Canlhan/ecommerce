@@ -1,30 +1,16 @@
-import React from 'react'
-import style from './Main.module.css'
+import React, { Fragment } from 'react'
+import style from './styles/Main.module.css'
 import world from '../assets/images/world.jpg'
 import shop from '../assets/videos/shopping.mp4'
+import Header from './Header'
 const Main = () => {
 
     return (
-        <>
-          
+        
+          <Fragment>
                 <div className={style.header}>
                     <div className={style.container}>
-                        <div className={style.navbar}>
-                            <div className={style.logo}>
-                                        <img src="logo.png" alt=" yok"/>
-                            </div>
-                            <nav>
-                                <ul>
-                                    <li><a >Home</a></li>
-                                    <li><a >About</a></li>
-                                    <li><a >Buy</a></li>
-                                    <li><a >Contact</a></li>
-                                </ul>
-                            </nav>
-                            <div >
-                                <i className="fa-solid fa-question"></i>
-                            </div>
-                        </div>
+                            <Header/>
                         <div className={style.row}>
                             <div className={style.col_2}>
                                 <h1>Sen de al !  <span> Sen de kazan !  </span> </h1>
@@ -44,8 +30,10 @@ const Main = () => {
                         </div>
                     </div>
                 </div>
+          </Fragment>
+                
             
-        </>
+       
     )
 }
 
