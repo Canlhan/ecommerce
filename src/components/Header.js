@@ -1,5 +1,8 @@
 import React, { Fragment } from 'react'
 import style from '../components/styles/Header.module.css'
+
+
+
 const Header = () => {
 
 
@@ -28,4 +31,4 @@ const Header = () => {
     )
 }
 
-export default Header
+export default Header;
