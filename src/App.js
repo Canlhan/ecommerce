@@ -3,7 +3,7 @@ import './App.css';
 import React from 'react';
 import Main from './pages/Main';
 import { Route, Routes,Redirect } from 'react-router-dom';
-import Header from './components/Header';
+import Header from './components/navbar/Header';
 import About from './pages/About';
 import Buy from './pages/Buy';
 import Contact from './pages/Contact';

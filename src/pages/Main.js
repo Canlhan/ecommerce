@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import style from '../styles/Main.module.css'
 import world from '../assets/images/world.jpg'
 import shop from '../assets/videos/shopping.mp4'
-import Header from '../components/Header'
+import Header from '../components/navbar/Header'
 
 import {Link} from 'react-router-dom'
 const Main = () => {

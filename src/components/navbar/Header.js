@@ -1,9 +1,12 @@
 import React, { Fragment } from "react";
-import style from "../styles/Header.module.css";
+import style from "../../styles/navbarcss/Header.module.css";
 import { NavLink } from "react-router-dom";
-import { FaSearch,FaUserAlt } from "react-icons/fa";
+import Rightside from "./Rightside";
+
 
 const Header = () => {
+
+    
   return (
     <Fragment>
       <div className={style.navbar}>
@@ -17,20 +20,8 @@ const Header = () => {
                 <div className={style.home}>
                     <NavLink className={style.link} to="/home">ANASAYFA</NavLink>
                 </div>
-                <div className={style.rightside}>
-                    <div >
-                        <FaSearch/>
-                    </div>
-                    
-                    <NavLink to="/login">
-                        
-                                    <FaUserAlt/>                  
-                    </NavLink>
-
-                    
-                    
-
-                </div>
+                <Rightside/>
+                
         </nav>
        
       </div>

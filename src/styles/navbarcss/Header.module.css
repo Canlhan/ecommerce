@@ -7,11 +7,20 @@
 
 }
 .navbar{
-    background-color: azure;
+
+    background-color: rgba(255,0,0,0.5);
+    transition: background-color 0.75s ease;
     height:90px;
     display: grid;
     grid-template-columns: 20% 80%;
     column-gap:10px;
+    
+   
+
+}
+.navbar:hover{
+    background-color: rgba(212,0,0,0.3);
+    
 
 }
 .logo{
@@ -19,7 +28,7 @@
     height: 80px;
     margin: auto;
     padding-top: 7px;
-   
+    cursor:pointer;
     
 }
 .logo img{
@@ -37,7 +46,7 @@
     grid-template-columns: 80% 10%;
     align-items: center;
     justify-content: center;
-    background-color: azure;
+    
     
 }
 
@@ -64,17 +73,7 @@
    
     
 }
-.rightside{
-   
-   
-    width: 30%;
-    display: flex;
-    align-items: center;
-    justify-content:space-between;
-    margin-left: 10px;
-    
-    
-}
+
 
 
 
