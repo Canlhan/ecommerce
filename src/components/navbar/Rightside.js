@@ -16,7 +16,7 @@ const Rightside = () => {
                         <FaSearch/>
                     </div>
                     
-                    <NavLink to="/login">
+                    <NavLink className={style.login} to="/login">
                         <FaUserAlt/>                  
                     </NavLink>
 

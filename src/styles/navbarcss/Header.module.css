@@ -8,7 +8,8 @@
 }
 .navbar{
 
-    background-color: rgba(255,0,0,0.5);
+    position: sticky;
+    background-color: rgb(180, 140, 140);
     transition: background-color 0.75s ease;
     height:90px;
     display: grid;
@@ -19,8 +20,8 @@
 
 }
 .navbar:hover{
-    background-color: rgba(212,0,0,0.3);
-    
+    background-color: rgb(180, 140, 140);
+    color: rgb(238, 220, 220);
 
 }
 .logo{
@@ -53,7 +54,7 @@
 .home{
     
     
-
+    
     text-align: center;
     padding-right: 90px;
 }
@@ -64,15 +65,11 @@
     margin-top: 5px;
     font-size: 15px;
 }
-.link:hover{
-    
-    font-size: 18px;
-    text-align:end;
-
-    color:brown;
-   
+.link{
+    color: rgb(192, 198, 202);
     
 }
+
 
 
 

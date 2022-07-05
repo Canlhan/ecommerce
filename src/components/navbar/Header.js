@@ -3,7 +3,7 @@ import style from "../../styles/navbarcss/Header.module.css";
 import { NavLink } from "react-router-dom";
 import Rightside from "./Rightside";
 
-
+import logo from '../../assets/images/logo_200x200.png'
 const Header = () => {
 
     
@@ -12,7 +12,7 @@ const Header = () => {
       <div className={style.navbar}>
         <div className={style.logo}>
           <img
-            src="https://static.remove.bg/remove-bg-web/ea4eaf12fdb825d09a927ec03bfcfc723af95931/assets/start-1abfb4fe2980eabfbbaaa4365a0692539f7cd2725f324f904565a9a744f8e214.jpg"
+            src={logo}
             alt=" yok"
           />
         </div>
