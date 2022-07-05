@@ -4,9 +4,10 @@ import React from 'react';
 import Main from './pages/Main';
 import { Route, Routes,Redirect } from 'react-router-dom';
 import Header from './components/navbar/Header';
-import About from './pages/About';
-import Buy from './pages/Buy';
+
+
 import Contact from './pages/Contact';
+import Login from './pages/Login';
 
 
 function App() {
@@ -18,8 +19,9 @@ function App() {
       
       <Routes>
             <Route path='/home' element={<Main/>}/>
-            <Route path='/about' element={<About/>}/>
-            <Route path='/buy' element={<Buy/>}/>,
+            <Route path='/' element={<Main/>}/>
+            <Route path='/login' element={<Login/>}/>
+        
             <Route path='/contact' element={<Contact/>}/>
             
       </Routes>

@@ -6,15 +6,17 @@ import Rightside from "./Rightside";
 import logo from '../../assets/images/logo_200x200.png'
 const Header = () => {
 
+  
     
   return (
     <Fragment>
       <div className={style.navbar}>
         <div className={style.logo}>
-          <img
+          
+          <NavLink to="/"><img
             src={logo}
             alt=" yok"
-          />
+          /></NavLink>
         </div>
         <nav>
                 <div className={style.home}>
