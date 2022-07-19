@@ -1,0 +1,50 @@
+.best_of_the_week {
+    background-color: var(--backgroundColor);
+    padding: 4rem 3rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .best_of_the_week h2 {
+    font-size: 4.6rem;
+    padding: 1.6rem 0;
+  }
+  
+  .best_of_the_week > p {
+    font-size: 3rem;
+    padding: 1.6rem 0 6rem;
+  }
+  
+  .best_of_the_week .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow-x: scroll;
+  }
+  
+  .best_of_the_week .card {
+    margin: 3rem 2.4rem 5rem;
+  }
+  
+  .best_of_the_week .card_picture {
+    width: 40rem;
+    height: 60rem;
+    background-image: url("https://www.jument.com.tr/Uploads/UrunResimleri/thumb/jumentanvelop-kruvaze-kisa-kol-ofis-ka-fe4002.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .best_of_the_week .card_title {
+    padding: 2rem 2rem 1rem;
+    font_size: 2.6rem;
+  }
+  
+  .best_of_the_week .card_comment {
+    font-size: 1.4rem;
+  }
+  
+  .best_of_the_week .card_price {
+    font-size: 1.6rem;
+    padding-top: 1rem;
+  }
