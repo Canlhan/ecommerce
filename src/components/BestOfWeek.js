@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 
 import style from './BestOfWeek.module.css'
 const BestOfWeek = () => {
-    
+
 
   return (
 
@@ -73,6 +73,7 @@ const BestOfWeek = () => {
             </div>
         </div>
     </div>
+    <div className={style.gif}></div>
     </Fragment>
   )
 }

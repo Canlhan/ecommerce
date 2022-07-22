@@ -8,7 +8,12 @@ import Navbar from './components/navbar/Navbar';
 import Header from './components/Header';
 import BrandPromotion from './components/BrandPromotion';
 import BestOfWeek from './components/BestOfWeek';
+import Sponsors from './components/Sponsors';
+import Introduction from './components/Introduction';
+import ProductInformation from './components/ProductInformation';
+import Footer from './components/Footer';
 
+import './App.css'
 
 
 
@@ -22,6 +27,11 @@ function App() {
       <Header/>
       <BrandPromotion/>
       <BestOfWeek/>
+      <Sponsors/>
+      <Introduction/>
+      <ProductInformation/>
+      <Footer/>
+      
      
     </React.Fragment>
   );

@@ -1,0 +1,48 @@
+.sponsors {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 20rem;
+  }
+  .sponsor {
+    text-align: center;
+    font-size: 2.4rem;
+    padding: 3rem 2rem;
+    display: block;
+    width: 20%;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .introduction {
+      flex-direction: column;
+      padding: 4rem 10rem;
+    }
+  
+    .introduction > div {
+      margin: 2rem;
+      width: 100%;
+    }
+  
+    .sponsor {
+      width: 50%;
+    }
+  
+    .product_information {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .product_information .card {
+      width: 80%;
+      margin: 2rem;
+    }
+  
+    .sponsors {
+      padding: 6rem 10rem;
+    }
+  }
+ 
+  
