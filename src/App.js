@@ -14,6 +14,7 @@ import ProductInformation from './components/ProductInformation';
 import Footer from './components/Footer';
 
 import './App.css'
+import Shop from './pages/Shop';
 
 
 
@@ -24,13 +25,13 @@ function App() {
     <React.Fragment>
       
       <Navbar/>
-      <Header/>
-      <BrandPromotion/>
-      <BestOfWeek/>
-      <Sponsors/>
-      <Introduction/>
-      <ProductInformation/>
-      <Footer/>
+
+      <Routes>
+
+          <Route path='/shop' element={<Shop/>}/>
+          <Route path='/' element={<HomePage/>}/>
+
+      </Routes>
       
      
     </React.Fragment>

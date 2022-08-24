@@ -3,6 +3,7 @@ import React, { Fragment } from 'react'
 import style from './ProductInformation.module.css'
 const ProductInformation = () => {
 
+    
   return (
     <Fragment>
          <div className={style.product_information}>

@@ -10,7 +10,7 @@ const BrandPromotion = () => {
         Curators of ethical fashion and New Zealand designed. Hebe is a destination for style seekers. Located in
         Masterton's boutique Kuripuni.
          </div>
-   
+      
     </Fragment>
   )
 }

@@ -2,6 +2,10 @@ import React, { Fragment } from 'react'
 
 import style from './BestOfWeek.module.css'
 const BestOfWeek = () => {
+    
+
+
+
 
 
   return (

@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { Link } from 'react-router-dom'
 
 import style from './Header.module.css'
 
@@ -10,7 +11,7 @@ const Header = () => {
         <div>
             <h2>End of Season Sale</h2>
             <p>Pieces from $50!</p>
-            <input type="button" value="Shop Now"/>
+            <Link to='/shop'> <input type="button" value="Shop Now"/>  </Link>
         </div>
     </header>
    </Fragment>
