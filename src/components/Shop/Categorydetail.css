@@ -1,0 +1,10 @@
+.containergrid{
+    display: grid;
+    grid-template-columns: auto auto auto;
+   
+    padding-top:5rem;
+
+}
+.grid_item{
+
+}

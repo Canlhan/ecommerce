@@ -1,0 +1,183 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 15px;
+}
+
+/*container*/
+.container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.component {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+}
+
+.sellerPicture,
+.customerPicture {
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.sellerPicture {
+    left: 0;
+    top: 0;
+    background-image: url("http://peyzaj3m.com/wp-content/uploads/2019/08/%C3%87%C3%96L-1366x902.jpg");
+}
+
+.seller,
+.customer,
+.customerPicture {
+    right: 0;
+    top: 0;
+}
+
+.seller,
+.customer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.seller {
+    background-color: white;
+}
+
+.customer {
+    background-color: black;
+    transition: all .6s;
+}
+
+.customer input {
+    background: black;
+    color: white;
+}
+
+.customer input::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+h1 {
+    padding: 2rem 0;
+    font-size: 4.2rem;
+    color: rgb(255, 102, 0);
+}
+
+input {
+    display: block;
+    font-size: 2.2rem;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+    margin: 2rem 0;
+}
+
+button[type="submit"] {
+    font-size: 1.6rem;
+    display: block;
+    background-color: rgb(247, 0, 255);
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 2rem;
+    padding: 1rem 3rem;
+    margin: 0 0 0 auto;
+    transition: all .6s;
+}
+
+button[type="submit"]:hover {
+    background-color: rgb(0, 132, 255);
+}
+
+.loginPages {
+    font-size: 1.7rem;
+    display: block;
+    width: 100%;
+    margin: 2.6rem 0;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 2rem;
+    outline: none;
+    color: white;
+    background-color: rgb(111, 0, 255);
+    transition: all .6s;
+}
+
+.customer.active {
+    transform: translateX(-100%);
+}
+
+.customerPicture.active {
+    transform: translateX(0);
+}
+
+.loginPages:hover {
+    background-color: rgb(255, 0, 98);
+}
+
+.customerPicture {
+    background-image:
+        url("https://img.wallpapic.com/i3276-425-219/medium/grafik-sanati-soyut-isiklar-parlaklik-duvar-kagidi.jpg");
+    transform: translateX(100%);
+    transition: all .6s;
+}
+
+@media screen and (max-width : 1500px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width : 1100px) {
+    html {
+        font-size: 9px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+
+    html {
+        font-size: 14px;
+    }
+
+    .sellerPicture,
+    .customerPicture {
+        display: none;
+    }
+
+    .seller,
+    .customer {
+        width: 100%;
+    }
+
+    .customer {
+        transform: translateX(100%);
+        z-index: 100;
+    }
+
+    .customer.active {
+        transform: translateX(0);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    html {
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    html {
+        font-size: 8px;
+    }
+}

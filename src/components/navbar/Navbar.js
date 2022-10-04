@@ -1,18 +1,29 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Usewindowsize from "../../customHooks/usewindowsize";
-import BrandPromotion from "../BrandPromotion";
+
 import style from './Navbar.module.css'
+import{chartActions} from "../../store/chart-slice"
 
 const Navbar = () => {
 
   const [isOpenMenuList,setMenuList]=useState(true);
   const [firstMenu,setFirstMenu]=useState(true);
 
-  
+  // burada redux yapısını kullandım
+
+   const isOpenChart=  useSelector( state=> state.chart.isOpenChart)
+   const dispatch=useDispatch();
   const[height,width]=Usewindowsize();
 
- 
+  const handlegetChart=()=>{
+
+    
+    dispatch(chartActions.toggleChart());
+    console.log(isOpenChart)
+  }
+ // burada bitti 
 
   useEffect(()=>{
 
@@ -68,7 +79,7 @@ const Navbar = () => {
             <i className="fas fa-search"></i>
           </li>
           <li className={style.icon_list_item}>
-            <i className="fas fa-shopping-bag"></i>
+            <i onClick={handlegetChart} className="fas fa-shopping-bag"></i>
           </li>
           <li id={style.menu_item}  onClick={menuItemHandler} className={`${style.icon_list_item} ${style.invisible}`}>
             <i className="fas fa-bars"></i>

@@ -1,0 +1,289 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  :root {
+    --advertisementBgColor: #5d82e4;
+    --fontFamily_figtree: "Figtree", sans-serif;
+    --fontFamily_russoOne: "Russo One", sans-serif;
+  }
+  html {
+    font-size: 10px;
+    font-family: var(--fontFamily_figtree);
+  }
+  /*! Evrensel Kod Satırları */
+  ul {
+    list-style-type: none;
+  }
+  a {
+    text-decoration: none;
+    color: unset;
+  }
+  
+  nav ul.menu-list li.active a::after {
+    transform: translateX(0);
+  }
+  /*! Advertisement Kod Satırı */
+  .advertisement {
+    background-color: var(--advertisementBgColor);
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+    padding: 0.8rem 0;
+    word-spacing: 0.3rem;
+  }
+  /*! Nav Kod Satırı */
+ 
+  
+  nav ul {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  nav ul li {
+    margin: 0 2rem;
+    font-size: 2.2rem;
+  }
+  
+  nav ul li a,
+  nav ul li i {
+    cursor: pointer;
+  }
+  
+  /*! brandName ile ilgili css kodları */
+  
+  nav .brandName {
+    font-size: 3rem;
+  }
+  
+  nav .brandName i {
+    font-weight: 500;
+  }
+  
+  nav .brandName a > span:first-of-type {
+    font-family: var(--fontFamily_russoOne);
+  }
+  
+  /*! menu-list ile ilgili kodlar */
+  
+  nav ul.menu-list li a {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    padding: 1rem 0;
+    font-weight: 600;
+  }
+  
+  nav ul.menu-list li a::after {
+    content: "";
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border: 1px solid red;
+    transition: all 0.6s;
+    transform: translateX(-100%);
+  }
+  
+  nav ul.menu-list li a:hover::after {
+    transform: translateX(0);
+  }
+  
+  /*! icon-list ile ilgili kodlar */
+  
+  nav ul.icon-list li i {
+    transition: all 0.6s;
+  }
+  
+  nav ul.icon-list li i:hover {
+    color: red;
+  }
+  /*! Container ile ilgili css kodları */
+  .container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 12rem 16rem 3rem;
+  }
+  /*! card ile ilgili css kodları */
+  .card {
+    margin: 4rem 3rem;
+    padding: 2rem;
+    width: 35rem;
+  }
+  
+  .card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.35);
+  }
+  
+  .card .card-information {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .card .discount-tag {
+    padding: 1.5rem 2rem;
+    text-align: center;
+    background-color: #c20000;
+    color: white;
+    font-weight: 900;
+    font-size: 1.6rem;
+  }
+  
+  .card .like-button {
+    -webkit-text-stroke: 3px black;
+    color: transparent;
+    font-size: 2.4rem;
+    transition: all 0.6s;
+  }
+  
+  .card .like-button:hover {
+    -webkit-text-stroke: 3px red;
+  }
+  
+  .card .like-button.like {
+    -webkit-text-stroke: 3px red;
+    color: red;
+  }
+  
+  .card .shoes-image {
+    margin: 1rem 0;
+    height: 25rem;
+    background-image: url("https://contents.mediadecathlon.com/p1794832/kb72c47d735ab09aaddc6ef6e8310201a/run-active-spor-ayakkabi.jpg?format=auto&quality=60&f=500x0");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  .card:hover .shoes-image {
+    background-image: url("https://productimages.hepsiburada.net/s/124/600-800/110000074579137.jpg");
+  }
+  
+  .shoes-image-list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+  
+  .shoes-image-list-item {
+    margin: 1rem;
+    height: 5rem;
+    width: 5rem;
+    background-image: url("https://contents.mediadecathlon.com/p1876652/k$2685b59bc8d289abf686ca79841bc3e9");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+  
+  /*! shoe-sizes ile ilgili css kodları */
+  
+  .shoe-sizes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+  }
+  
+  .card:hover .shoe-sizes {
+    visibility: visible;
+  }
+  
+  .shoe-sizes-item {
+    margin: 0.8rem 1rem;
+    font-size: 1.6rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0s;
+  }
+  
+  .shoe-sizes-item:hover {
+    color: rgb(255, 123, 0);
+    transition: all 0.4s;
+  }
+  
+  /*! shoes-information ile ilgili css kodları */
+  
+  .shoes-information {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+  }
+  .shoes-information-item.productName{
+    width: calc(100% - 8.3rem);
+    border: 1px solid red;
+  }
+  .shoes-information .shoesName {
+    
+    padding: 0 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 2.2rem;
+    font-weight: 400;
+    position: relative;
+
+  }
+  .shoes-information .shoesName::before{
+
+    content:"";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+    left: 0;
+    background-image: linear-gradient(to right,transparent 0 90%,rgba(255, 255, 255,0.6) 90% 100%);
+  }
+  
+  .shoes-information-item a.shopping-button i {
+    font-size: 2rem;
+    color: white;
+    background-color: black;
+    padding: 2.2rem;
+    margin: 1rem;
+    transition: all 0.6s;
+    border:1px solid green;
+  }
+  
+  .shoes-information-item a.shopping-button i:hover {
+    background-color: red;
+  }
+  
+  .shoesPrice {
+
+    padding: 2rem 0;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+  }
+  .shoesPrice .shoesNewPrice {
+    color: red;
+    font-weight: 800;
+  }
+  
+  /*! Toggle-buttons ile ilgili css kodları */
+  .toggleButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+  }
+  
+  .toggleButton {
+    padding: 1rem 1.4rem;
+    font-weight: 800;
+    font-size: 1.6rem;
+    margin: 0 0.6rem;
+  }

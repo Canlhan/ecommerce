@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { Route, Routes,Redirect } from 'react-router-dom';
 import HomePage from './pages/HomePage';
@@ -15,23 +15,32 @@ import Footer from './components/Footer';
 
 import './App.css'
 import Shop from './pages/Shop';
+import CategoryDetail from './components/Shop/CategoryDetail';
+import ProductDetail from './pages/ProductDetail';
+import Chart from './components/Chart/Chart';
+import Login from './components/login/Login';
 
 
 
 
 function App() {
-
+      
   return (
     <React.Fragment>
       
-      <Navbar/>
+     
 
       <Routes>
-
-          <Route path='/shop' element={<Shop/>}/>
-          <Route path='/' element={<HomePage/>}/>
+        <Route path='/shop/:categoryId/:productId' element={<ProductDetail/>}/>
+          <Route path='/shop/:categoryId'  element={<CategoryDetail/>}/>
+          <Route path='/shop' element={<Shop/>} />
+          <Route path='/homepage' element={<HomePage/>}/>
+          <Route path='/' element={<Login/>}/>
+         
+         
 
       </Routes>
+      <Chart/>
       
      
     </React.Fragment>

@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import style from './Sponsor.module.css'
 const Sponsors = () => {
   
+  
   return (
     <Fragment>
       <div className={style.sponsors}>

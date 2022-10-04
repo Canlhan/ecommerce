@@ -1,0 +1,136 @@
+.shopping-cart-box {
+    background-color: rgba(0, 0, 0, 0.4);
+    color: black;
+    position: fixed;
+    top: 11.4rem;
+    right: 0;
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    transform: translateX(0);
+    transition: all 0.6s;
+    z-index: 3;
+  }
+  .shopping-cart {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .shopping-cart-box.closed {
+    transform: translateX(100%);
+  }
+  
+  .shopping-cart-product {
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    margin: 1rem 0;
+  }
+  .shopping-cart-product input {
+    background-color: white;
+    color: orange;
+    border: 1px solid orange;
+    padding: 1rem;
+    font-weight: 800;
+    font-size: 1.4rem;
+  }
+  .shopping-cart-product-number {
+    padding: 0 1rem;
+  }
+  .shopping-cart-product-picture {
+    width: 5rem;
+    height: 7rem;
+    background-image: url("https://statics.boyner.com.tr/mnresize/325/451/productimages/5002815929_230_01.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+  }
+  .shopping-cart-product-name {
+    position: relative;
+    margin: 0 2rem;
+    width: 15rem;
+    overflow: hidden;
+    padding: 1rem 1rem;
+    white-space: nowrap;
+  }
+  .shopping-cart-product-name::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(
+      to right,
+      transparent 0 90%,
+      rgba(255, 255, 255, 0.6) 90% 100%
+    );
+  }
+  
+  .shopping-cart-product-price-information {
+    padding: 1rem 2rem;
+  }
+  .shopping-cart-product-price {
+    display: inline-block;
+    width: 8rem;
+    text-align: center;
+    padding: 0 0.4rem;
+  }
+  .shopping-cart-product-trash {
+    display: inline-block;
+    margin: 0 0 0 3rem;
+    font-size: 2rem;
+  }
+  
+  .warning-message {
+    text-align: center;
+    color: orange;
+    font-weight: 900;
+    font-size: 2rem;
+    background-color: white;
+    width: 56.2rem;
+    padding: 1.6rem 0;
+    
+  }
+  
+  .shopping-cart:empty + .warning-message {
+    display: block;
+  }
+  
+  .cart-information {
+    padding: 1rem 3rem;
+    width: 56.2rem;
+    background-color: white;
+    align-items: center;
+    justify-content: space-around;
+    
+  }
+  .shopping-cart:not(:empty) + .warning-message + .cart-information {
+    display: flex;
+  }
+  .cart-confirmation-button {
+    background-color: orange;
+    color: white;
+    font-weight: 800;
+    padding: 1rem 2rem;
+    outline: none;
+    border: 1px solid orange;
+    border-radius: 1.4rem;
+    transition: all 0.6s;
+  }
+  
+  .cart-confirmation-button:hover {
+    background-color: white;
+    color: orange;
+  }
+  
+  .total-price {
+    text-align: right;
+    display: inline-block;
+    padding-right: 1.7rem;
+    width: 20rem;
+  }
+  
