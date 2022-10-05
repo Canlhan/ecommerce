@@ -12,7 +12,7 @@ const CategoryCardItem = (props) => {
     const image=useRef()
 
     const handlerHover=(e)=>{
-        console.log("mouse üstünde")
+        console.log("")
         setHover(true)
     }
     const handlerleave=()=>{
@@ -29,12 +29,6 @@ const CategoryCardItem = (props) => {
   return (
 
     <Fragment>
-
-  
-    
- 
-  
-        
         
             <div className="card"  onMouseEnter={handlerHover} onMouseLeave={handlerleave}>
                 <div className="card-information">
