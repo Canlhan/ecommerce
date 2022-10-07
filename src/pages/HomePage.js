@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react'
-import BestOfWeek from '../components/BestOfWeek'
-import BrandPromotion from '../components/BrandPromotion'
+import BestOfWeek from '../components/homepageother/BestOfWeek'
+import BrandPromotion from '../components/homepageother/BrandPromotion'
 import Chart from '../components/Chart/Chart'
-import Footer from '../components/Footer'
-import Header from '../components/Header'
-import Introduction from '../components/Introduction'
+import Footer from '../components/homepageother/Footer'
+import Header from '../components/homepageother/Header'
+import Introduction from '../components/homepageother/Introduction'
 import Navbar from '../components/navbar/Navbar'
-import ProductInformation from '../components/ProductInformation'
-import Sponsors from '../components/Sponsors'
-import './HomePage.module.css'
+import ProductInformation from '../components/homepageother/ProductInformation'
+import Sponsors from '../components/homepageother/Sponsors'
+
 const HomePage = () => 
 {
 

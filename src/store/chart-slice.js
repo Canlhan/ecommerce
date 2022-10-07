@@ -11,11 +11,32 @@ const chartSlice=createSlice(
         initialState:initialChartState,
         reducers:{
             addProduct(state,action){
-                state.products=[...state.products,action.payload]
+                
+               
+                const existingProduct=state.products.find(({ productId }) => productId ===action.payload.productId);
+                console.log(existingProduct)
+                if(existingProduct===undefined)
+                {
+                    console.log("undefied bu obje")
+                   state.products=[...state.products,action.payload];
+                    
+                }
+                else{
+                    existingProduct.quantity+=1;
+                    console.log(existingProduct.quantity)
+                }
+                
+              
+                
+                
+                
+                
+
+                
             },
             deleteProduct(state,action){
                 state.products=state.products.filter((item)=>
-                    item.productName!==action.payload
+                    item.productId!==action.payload
                 )
             },
             toggleChart(state){

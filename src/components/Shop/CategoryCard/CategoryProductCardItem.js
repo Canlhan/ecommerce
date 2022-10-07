@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { chartActions } from '../../../store/chart-slice';
 import Shoesize from './Shoesize'
 
-const CategoryCardItem = (props) => {
+const CategoryProductCardItem = (props) => {
     
     const dispatch=useDispatch();
     
@@ -30,7 +30,7 @@ const CategoryCardItem = (props) => {
 
     <Fragment>
         
-            <div className="card"  onMouseEnter={handlerHover} onMouseLeave={handlerleave}>
+            <div key={props.item.productId} className="card"  onMouseEnter={handlerHover} onMouseLeave={handlerleave}>
                 <div className="card-information">
                     <div className="discount-tag">-30%</div>
                     
@@ -76,4 +76,4 @@ const CategoryCardItem = (props) => {
   )
 }
 
-export default CategoryCardItem;
+export default CategoryProductCardItem;

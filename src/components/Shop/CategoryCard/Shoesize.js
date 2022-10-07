@@ -8,7 +8,7 @@ const Shoesize = (props) => {
 
     <Fragment>
           
-              {shoesizes.map((size)=>(<div className="shoe-sizes-item">{size.value}</div>))}
+              {shoesizes.map((size,index)=>(<div key={index} className="shoe-sizes-item">{size.value}</div>))}
                     
             
     </Fragment>

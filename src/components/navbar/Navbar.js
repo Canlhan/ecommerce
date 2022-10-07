@@ -52,7 +52,7 @@ const Navbar = () => {
     <Fragment>
       <nav>
         <div id={style.websiteName} className="">
-          <Link to='/' style={{color:'white'}}> buca.</Link> 
+          <Link to='/home' style={{color:'white'}}> buca.</Link> 
         </div>
         
         <ul  className={`${  style.menu_list}  ${ isOpenMenuList || firstMenu ? style.closed:''} ${isOpenMenuList ? style.animation:''} `} >

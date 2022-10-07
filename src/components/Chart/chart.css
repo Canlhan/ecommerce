@@ -1,3 +1,5 @@
+
+
 .shopping-cart-box {
     background-color: rgba(0, 0, 0, 0.4);
     color: black;
@@ -39,6 +41,13 @@
   }
   .shopping-cart-product-number {
     padding: 0 1rem;
+  }
+  .shopping-cart-product-quantity-setting{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    
   }
   .shopping-cart-product-picture {
     width: 5rem;

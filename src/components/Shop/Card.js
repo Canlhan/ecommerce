@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import style from '../ProductInformation.module.css'
+import style from '../homepageother/ProductInformation.module.css'
 import CardItem from './CardItem'
 import { Link } from "react-router-dom";
 

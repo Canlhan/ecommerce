@@ -1,5 +1,6 @@
 import React, { Fragment, useState } from 'react'
-import './login.css'
+import  './login.css'
+
 const Login = () => {
 
     const [addedClassNameForSwitchCustomerSeller,setSwitchCustomerSeller]=useState(false)
@@ -11,7 +12,7 @@ const Login = () => {
 
   return (
     <Fragment>
-        <div class="container">
+        <div class="containerl">
         <div class="component sellerPicture"></div>
 
         <div class={`component  ${ addedClassNameForSwitchCustomerSeller?"active":""}  customer`}>

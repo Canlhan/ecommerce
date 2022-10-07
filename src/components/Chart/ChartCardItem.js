@@ -6,26 +6,27 @@ const ChartCardItem = (props) => {
 
     const handleDeleteProduct=()=>{
         
-        dispatch(chartActions.deleteProduct(props.properties.productName))
+        dispatch(chartActions.deleteProduct(props.properties.productId));
+        console.log("product idd"+props.properties.productId);
     }
 
   return (
 
     <Fragment>
-        <div class="shopping-cart-product-picture"></div>
-                <p class="shopping-cart-product-name">{props.properties.productName}</p>
-                <div class="shopping-cart-product-quantity-setting">
-                    <input class="increase" type="button" value="-"/>
-                    <span class="shopping-cart-product-number">1</span>
-                    <input class="reduce" type="button" value="+"/>
+        <div key={props.properties.productId} className="shopping-cart-product-picture"></div>
+                <p className="shopping-cart-product-name">{props.properties.productName}</p>
+                <div className="shopping-cart-product-quantity-setting">
+                    <input className="increase" type="button" value="-"/>
+                    <span className="shopping-cart-product-number">{props.properties.quantity}</span>
+                    <input className="reduce" type="button" value="+"/>
 
                 </div>
                 
                 
-                <div class="shopping-cart-product-price-information">
-                    <span class="shopping-cart-product-price" data-price="87">{props.properties.price}</span><span>TL</span>
+                <div className="shopping-cart-product-price-information">
+                    <span className="shopping-cart-product-price" data-price="87">{props.properties.price}</span><span>TL</span>
                 </div>
-                <i onClick={handleDeleteProduct} class="far fa-trash-alt shopping-cart-product-trash"></i>
+                <i onClick={handleDeleteProduct} className="far fa-trash-alt shopping-cart-product-trash"></i>
     </Fragment>
   )
 }
