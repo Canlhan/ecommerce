@@ -1,5 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
 import { Link, useParams, useSearchParams } from 'react-router-dom'
+import { chartActions } from '../../../store/chart-slice';
 import Navbar from '../../navbar/Navbar';
 import CategoryCard from './CategoryCard';
 import './Categorydetail.css'
@@ -15,6 +17,8 @@ const shoes=[{productId:"1",productName:"AYAKKABI",imageUrl:"https://picsum.phot
 
 const CategoryDetail = () => {
 
+  
+
     const [filtershoes,setfilter]=useState([])
     
    
@@ -27,15 +31,18 @@ const CategoryDetail = () => {
     useEffect(()=>{
       console.log("çalıştı use");
      setfilter(shoes.filter((product)=>(product.category===params.categoryId))) 
-
+      
     },[])
+    
     
    
    
-
+ 
 
   return (
    <Fragment>
+     
+    
      <Navbar/>
         <div className='container'>
           

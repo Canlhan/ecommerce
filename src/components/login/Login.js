@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react'
+import { Link } from 'react-router-dom'
 import  './login.css'
 
 const Login = () => {
@@ -21,7 +22,7 @@ const Login = () => {
                 <form action="/homepage" >
                     <input type="email" name="emailAddress" id="custEmail" placeholder="E-mail Address" required/>
                     <input type="text" name="password" id="custPswd" placeholder="Password" required/>
-                    <button type="submit">LOGIN</button>
+                    <Link to="/home"><button type="submit">LOGIN</button></Link>
                 </form>
                  <button onClick={handlerSwitchcustomerSeller} class="loginPages">SELLER LOGIN PAGE</button>
             </div>

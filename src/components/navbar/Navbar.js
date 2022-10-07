@@ -36,11 +36,9 @@ const Navbar = () => {
       setMenuList(true);
       
     }
-
   },[width])
 
   
-
   const menuItemHandler=()=>{
     
 

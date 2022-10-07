@@ -1,15 +1,16 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom';
 import { chartActions } from '../../store/chart-slice';
 import './chart.css'
 import ChartCardItem from './ChartCardItem';
 const Chart = () => {
-
+    const dispatch=useDispatch();
     const isOpenChart=useSelector(state=>state.chart.isOpenChart);
     const products=useSelector(state=>state.chart.products)
-
-    const dispatch=useDispatch();
-
+    const [totalPrice,setTotalPrice]=useState(0);
+    
+    let totalprice=0;
     let chartClosed=""
     if(!isOpenChart){
         chartClosed="closed"
@@ -19,6 +20,13 @@ const Chart = () => {
       dispatch(chartActions.toggleChart())
     }
    
+    useEffect(()=>{
+     products.map((product)=>(
+      totalprice+=product.price*product.quantity
+      ))
+      setTotalPrice(totalprice)
+    },[products,totalprice])
+    
     
 
 
@@ -40,8 +48,8 @@ const Chart = () => {
        }
 
         <div class="cart-information">
-            <button  class="cart-confirmation-button">SEPETİ ONAYLA</button>
-            <div class="cart-price-information"><span class="total-price"></span><span>TL</span></div>
+            <Link to="/confirmChart"> <button  class="cart-confirmation-button">SEPETİ ONAYLA</button></Link>
+            <div class="cart-price-information"><span class="total-price"></span>{totalPrice}<span>TL</span></div>
         </div>
         
        

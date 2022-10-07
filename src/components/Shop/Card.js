@@ -10,6 +10,7 @@ const Card = (props) => {
     <Fragment>
 
     <div className={style.product_information}>
+     
         {props.categoryList.map((item)=>
 
            <Link to={`/shop/${item.id}`} key={item.id}>

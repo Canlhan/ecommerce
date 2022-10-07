@@ -12,12 +12,19 @@ import CategoryDetail from './components/Shop/CategoryCard/CategoryDetail';
 import ProductDetail from './pages/ProductDetail';
 import Chart from './components/Chart/Chart';
 import Login from './components/login/Login';
+import ConfirmChart from './pages/ConfirmChart';
+import { useDispatch, useSelector } from 'react-redux';
+import { chartActions } from './store/chart-slice';
 
 
 
 
 function App() {
-      
+  const isOpenChart=useSelector(state=>state.chart.isOpenChart);
+
+  const dispatch=useDispatch()
+
+  
   return (
     <React.Fragment>
       
@@ -25,6 +32,7 @@ function App() {
 
       <Routes>
         
+        <Route path='/confirmChart' element={<ConfirmChart/>}/>
         <Route path='/shop/:categoryId/:productId' element={<ProductDetail/>}/>
           <Route path='/shop/:categoryId'  element={<CategoryDetail/>}/>
           <Route path='/shop' element={<Shop/>} />
