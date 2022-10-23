@@ -8,7 +8,9 @@
     overflow: hidden;
     
 }
-
+.signandloginnear{
+    display: flex;
+}
 .component {
     position: absolute;
     width: 50%;

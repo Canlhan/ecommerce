@@ -2,7 +2,7 @@ import { act } from "react-dom/test-utils";
 
 const { createSlice } = require("@reduxjs/toolkit");
 
-const initialChartState={products:[],isOpenChart:false}
+const initialChartState={products:[],isOpenChart:false,sumPrice:0}
 
 const chartSlice=createSlice(
 
@@ -13,8 +13,8 @@ const chartSlice=createSlice(
             addProduct(state,action){
                 
                
-                const existingProduct=state.products.find(({ productId }) => productId ===action.payload.productId);
-                console.log(existingProduct)
+                const existingProduct=state.products.find(({ productID }) => productID ===action.payload.productID);
+                console.log(" slicedeaki varolan obje: "+existingProduct)
                 if(existingProduct===undefined)
                 {
                     console.log("undefied bu obje")
@@ -50,8 +50,14 @@ const chartSlice=createSlice(
             },
             DecreaseQuantity(state,action){
                 const existingProduct=state.products.find(({ productId }) => productId ===action.payload);
-                existingProduct.quantity+=1;
+                if(existingProduct.quantity<10){
+                    existingProduct.quantity+=1;
+                }
                 
+                
+            }
+            ,SetSumPrice(state,action){
+                state.sumPrice=action.payload;
             }
         }
     }

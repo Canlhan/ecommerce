@@ -7,7 +7,7 @@ const shozesize=[{value:"36"},{value:"37"},{value:"38"},{value:"39"},{value:"40"
 
 const CategoryCard = (props) => {
 
-    
+    console.log(props.item);
     
   return (
     <Fragment>

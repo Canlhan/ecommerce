@@ -1,0 +1,99 @@
+main {
+    padding: 4rem 10rem;
+    display: flex;
+    align-items: top;
+    justify-content: center;
+}
+
+.product-container {
+    flex-basis: auto;
+    width: 100%;
+}
+
+.product-container h2 {
+    font-size: 2.4rem;
+    font-family: var(--Noto);
+    font-weight: 400;
+}
+
+.product-container h2 span {
+    border-bottom: 4px solid orangered;
+}
+
+.recommended-products {
+    margin-bottom: 4rem;
+    border-top: 1px solid black;
+    padding: 5rem 0;
+    height: 50rem;
+    background-color: rgb(179, 255, 36);
+    color: white;
+    text-align: center;
+    line-height: 50rem;
+    font-size: 6.4rem;
+}
+
+.shopping-cart-list {
+    margin: 2rem 0 3rem;
+    box-shadow: 0 0 5px black;
+    
+}
+
+.order-confirmation {
+    position: sticky;
+    top: 5rem;
+    width: 35rem;
+    margin: 0 3rem;
+    height: 30rem;
+}
+
+.order-confirmation button {
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: rgb(255, 102, 0);
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 2rem;
+    font-family: var(--Konit);
+    border-radius: 1rem;
+    transition: all .6s;
+}
+
+.order-confirmation button:hover {
+    background-color: rgb(255, 153, 0);
+}
+
+.order-confirmation button i {
+    margin-left: .6rem;
+}
+
+.order-summary {
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+    box-shadow: 0 0 10px black;
+}
+
+.order-summary h2 {
+    font-size: 2.4rem;
+    font-weight: 400;
+    padding: 1rem 0;
+    border-bottom: 1px solid black;
+}
+
+.total-order-price {
+    padding: 2rem 0;
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+footer {
+    text-align: center;
+    height: 30rem;
+    margin-top: 3rem;
+    line-height: 30rem;
+    font-size: 4.2rem;
+    color: white;
+    background-color: black;
+}

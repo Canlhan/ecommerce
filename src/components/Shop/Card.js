@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 const Card = (props) => {
 
+  console.log("card içinde kat"+props.categoryList);
 
   return (
     <Fragment>
@@ -13,7 +14,7 @@ const Card = (props) => {
      
         {props.categoryList.map((item)=>
 
-           <Link to={`/shop/${item.id}`} key={item.id}>
+           <Link to={`/shop/${item.categoryID}`} key={item.categoryID}>
 
             <CardItem  style={style} item={item}/>
 

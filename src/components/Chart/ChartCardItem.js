@@ -1,7 +1,9 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { chartActions } from '../../store/chart-slice';
 const ChartCardItem = (props) => {
+  
+  const [quantity,setQuantity]=useState(1);
   
     const dispatch=useDispatch();
   
@@ -11,10 +13,21 @@ const ChartCardItem = (props) => {
         console.log("product idd"+props.properties.productId);
     }
     const handleIncreaseQuantity=()=>{
-     dispatch(chartActions.IncreaseQuantity(props.properties.productId));
+      if(quantity>1){
+        setQuantity(quantity-1);
+        props.setQuantity(quantity-1);
+      }
+     
+     
     }
     const handleDecreaseQuantity=()=>{
-      dispatch(chartActions.DecreaseQuantity(props.properties.productId));
+      
+      if( quantity<11){
+        setQuantity(quantity+1);
+        props.setQuantity(quantity+1);
+      }
+      
+      
       
     }
 
@@ -27,13 +40,14 @@ const ChartCardItem = (props) => {
                 <p className="shopping-cart-product-name">{props.properties.productName}</p>
                 <div className="shopping-cart-product-quantity-setting">
                     <input onClick={handleIncreaseQuantity} className="increase" type="button" value="-"/>
-                    <span className="shopping-cart-product-number">{props.properties.quantity}</span>
+                    <span className="shopping-cart-product-number">{quantity}</span>
                     <input onClick={handleDecreaseQuantity} className="reduce" type="button" value="+"/>
 
                 </div>
                 
                 <div className="shopping-cart-product-price-information">
-                    <span className="shopping-cart-product-price" data-price="87">{props.properties.price}</span><span>TL</span>
+                    <span className="shopping-cart-product-price" data-price="87">
+                      {props.properties.unitPrice}</span><span>TL</span>
                 </div>
                 <i onClick={handleDeleteProduct} className="far fa-trash-alt shopping-cart-product-trash"></i>
     </Fragment>

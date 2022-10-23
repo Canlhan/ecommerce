@@ -5,10 +5,11 @@ import { chartActions } from '../../store/chart-slice';
 import './chart.css'
 import ChartCardItem from './ChartCardItem';
 const Chart = () => {
+  const [quantity,setQuantity]=useState(1);
     const dispatch=useDispatch();
     const isOpenChart=useSelector(state=>state.chart.isOpenChart);
-    const products=useSelector(state=>state.chart.products)
-    const [totalPrice,setTotalPrice]=useState(0);
+    const products=useSelector(state=>state.chart.products);
+    const totalPrice=useSelector(state=>state.chart.sumPrice);
     
     let totalprice=0;
     let chartClosed=""
@@ -22,10 +23,14 @@ const Chart = () => {
    
     useEffect(()=>{
      products.map((product)=>(
-      totalprice+=product.price*product.quantity
+      totalprice+=product.unitPrice*quantity
       ))
-      setTotalPrice(totalprice)
-    },[products,totalprice])
+      console.log("üstte total: "+totalPrice);
+      dispatch(chartActions.SetSumPrice(totalprice))
+      console.log("sdlkfsdfşdsf "+quantity);
+      
+      
+    },[products,totalprice,quantity])
     
     
 
@@ -40,7 +45,8 @@ const Chart = () => {
            <div class="warning-message">SEPETİNİZDE ÜRÜN BULUNMAMAKTADIR</div> 
            
              :
-           products.map((product,index)=> <li key={index} class="shopping-cart-product"><ChartCardItem properties={{productId:product.productId,productName:product.productName,price:product.price,quantity:product.quantity}}/> </li>)
+           products.map((product,index)=> <li key={index} class="shopping-cart-product">
+             <ChartCardItem properties={product} setQuantity={setQuantity} quantity={quantity}/> </li>)
            
            
          
@@ -48,8 +54,9 @@ const Chart = () => {
        }
 
         <div class="cart-information">
-            <Link to="/confirmChart"> <button  class="cart-confirmation-button">SEPETİ ONAYLA</button></Link>
-            <div class="cart-price-information"><span class="total-price"></span>{totalPrice}<span>TL</span></div>
+            <Link to="/confirmChart" totalprice={totalPrice}> <button  class="cart-confirmation-button">SEPETİ ONAYLA</button></Link>
+            <div class="cart-price-information"><span class="total-price">
+              </span>{totalPrice}<span>TL</span></div>
         </div>
         
        

@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import Navbar from '../components/navbar/Navbar'
 import Card from '../components/Shop/Card'
+import Usefetchdata from '../customHooks/Usefetchdata'
 import style from './Shop.module.css'
 
 const list=[{id:'1',categoryName:"bel"}
@@ -10,12 +11,13 @@ const list=[{id:'1',categoryName:"bel"}
 ]
 const Shop = () => {
 
-
+  const categories=Usefetchdata("https://localhost:44301/api/category/getall");
+  
   return (
     <Fragment>
         <Navbar/>
         <div className={style.container}>
-          <Card categoryList={list}/>
+          <Card categoryList={categories}/>
         </div>
         
 

@@ -25,17 +25,17 @@ const CategoryProductCardItem = (props) => {
         dispatch(chartActions.setTrueChart())
         dispatch(chartActions.addProduct(props.item))
     }
-    
+    console.log(props.item.ProductName+ " fdgdf")
   return (
 
     <Fragment>
         
-            <div key={props.item.productId} className="card"  onMouseEnter={handlerHover} onMouseLeave={handlerleave}>
+            <div key={props.item.productID} className="card"  onMouseEnter={handlerHover} onMouseLeave={handlerleave}>
                 <div className="card-information">
                     <div className="discount-tag">-30%</div>
                     
                 </div>
-                <Link to={props.item.productId}>
+                <Link to={props.item.productID}>
                 <div ref={image}   className="shoes-image" style={{backgroundImage:
                     onHover===true?'url(https://picsum.photos/200/300)':'url(https://picsum.photos/300/300)'
                 }}
@@ -51,7 +51,7 @@ const CategoryProductCardItem = (props) => {
                 </div>
                 
                 <div className="shoe-sizes">
-                     <Shoesize shoesize={props.shozesize}/>
+                     <Shoesize shoesize={[2,3,4]}/>
                      
                      
                 </div>
@@ -59,8 +59,8 @@ const CategoryProductCardItem = (props) => {
                     <div className="shoes-information-item productName">
                         <h2 className="shoesName ">{props.item.productName}</h2>
                         <div className="shoesPrice">
-                            <div className="shoesNewPrice">€{props.item.newPrice}</div> <br/>
-                            <div className="shoesDelPrice"><del>€{props.item.price}</del></div>
+                            <div className="shoesNewPrice">€{props.item.unitPrice}</div> <br/>
+                            <div className="shoesDelPrice"><del>€{props.item.unitPrice}</del></div>
                         </div>
                     </div>
                     <div  onClick={handleAddProduct} className="shoes-information-item"><a className="shopping-button" href="#">

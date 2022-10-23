@@ -1,0 +1,99 @@
+html {
+    font-size: 10px;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("https://www.technopat.net/sosyal/eklenti/arkaplan-jpg.501648/");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.form-container {
+    background-color: rgba(0, 0, 0, .5);
+    padding: 3rem;
+}
+
+.form-container h2 {
+    text-align: center;
+    font-size: 3.2rem;
+    font-family: var(--SourceSerifPro);
+    padding: 2rem 0;
+    color: white;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 60rem;
+}
+
+.data {
+    width: 50%;
+    padding: 1rem 3rem;
+}
+
+.data label,
+.data  input {
+    display: block;
+    width: 100%;
+}
+
+.data label {
+    padding: 1rem 0;
+    font-size: 2rem;
+    font-weight: 600;
+    color: rgb(255, 136, 0);
+}
+
+.data input {
+    padding: 1rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, .6);
+    color: white;
+    outline: none;
+    border: none;
+}
+
+input[type="submit"] {
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-top: 2rem;
+    padding: 1rem 4rem;
+    border-radius: 1rem;
+    border: none;
+    outline: none;
+    color: orange;
+    background-color: white;
+    transition: all .4s;
+}
+
+input[type="submit"]:hover {
+    background-color: orange;
+    color: white;
+}
+
+@media screen and (max-width: 1200px) {
+    html {
+        font-size: 9px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    html {
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    html {
+        font-size: 7px;
+    }
+}
