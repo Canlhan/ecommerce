@@ -9,7 +9,7 @@ const Usefetchdata=(url)=>{
         async function fetchProduct() {
           const response = await fetch(url);
           const json = await response.json();
-          console.log(json);
+          console.log("fetch data "+JSON.stringify(json) )
           setProducts(json.data);
         }
     

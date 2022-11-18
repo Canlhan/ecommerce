@@ -13,7 +13,7 @@ const CategoryCard = (props) => {
     <Fragment>
      
         
-        <CategoryProductCardItem  item={props.item} shozesize={shozesize}/>
+        <CategoryProductCardItem  product={props.item} shozesize={shozesize}/>
     
  
     </Fragment>

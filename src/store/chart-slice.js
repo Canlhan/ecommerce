@@ -23,12 +23,12 @@ const chartSlice=createSlice(
                 }
                 else{
                     existingProduct.quantity+=1;
-                    console.log(existingProduct.quantity)
+                    console.log("chat slice"+existingProduct.quantity)
                 } 
             },
             deleteProduct(state,action){
                 state.products=state.products.filter((item)=>
-                    item.productId!==action.payload
+                    item.productID!==action.payload
                 )
             },
             toggleChart(state){
@@ -41,7 +41,7 @@ const chartSlice=createSlice(
                 state.isOpenChart=false;
             },
             IncreaseQuantity(state,action){
-                const existingProduct=state.products.find(({ productId }) => productId ===action.payload);
+                const existingProduct=state.products.find(({ productID }) => productID ===action.payload);
                 if(existingProduct.quantity!==1){
                     existingProduct.quantity-=1;
                 }
@@ -49,7 +49,7 @@ const chartSlice=createSlice(
                 
             },
             DecreaseQuantity(state,action){
-                const existingProduct=state.products.find(({ productId }) => productId ===action.payload);
+                const existingProduct=state.products.find(({ productID }) => productID ===action.payload);
                 if(existingProduct.quantity<10){
                     existingProduct.quantity+=1;
                 }

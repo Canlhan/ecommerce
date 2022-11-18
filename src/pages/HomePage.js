@@ -12,6 +12,7 @@ import Sponsors from '../components/homepageother/Sponsors'
 const HomePage = () => 
 {
 
+  
   return (
     
     <Fragment>

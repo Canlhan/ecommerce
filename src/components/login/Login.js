@@ -1,15 +1,62 @@
-import React, { Fragment, useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Fragment, useEffect, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import Usefetchdata from '../../customHooks/Usefetchdata'
+import Usepostdata from '../../customHooks/Usepostdata'
+import { customerActions } from '../../store/customer-slice'
 import  './login.css'
 
 const Login = () => {
 
+    const dispatch=useDispatch();
+    const customerredux=useSelector((state)=>state.customer.customer);
+
+    const[data,setData]=useState({object:{email:"",password:""}})
+
     const [addedClassNameForSwitchCustomerSeller,setSwitchCustomerSeller]=useState(false)
+
+    const navigate=useNavigate();
+    const{register,handleSubmit}=useForm();
 
     const handlerSwitchcustomerSeller=()=>{
 
         setSwitchCustomerSeller(!addedClassNameForSwitchCustomerSeller);
     }
+    
+   
+   
+    
+    
+    
+    const onsubmit=(data)=>{
+
+            console.log(data)
+            setData(data);  
+    }
+
+    const customer=Usefetchdata(`https://localhost:44301/api/customers/getcustomerbyemail/${data.email}`);
+    console.log("render oldu customer: "+customer);
+    console.log("**********************************")
+    useEffect(()=>{
+        console.log("use girdi")
+        if(customer!=null){
+            dispatch(customerActions.addCustomer(data));
+            console.log("null değile girdi"+customerredux.email);
+            const createChart=Usepostdata({url:"https://localhost:44301/api/cart/add",object:{dateCreated:Date.now(),customerID:`${customer.customerID}`}})
+
+            console.log(customer+" için  "+createChart+" sepeti oluşturuldu")
+            navigate("/home")
+            
+        }
+        
+
+    },[customer])
+    
+    
+   
+    
+   
 
   return (
     <Fragment>
@@ -19,11 +66,11 @@ const Login = () => {
         <div class={`component  ${ addedClassNameForSwitchCustomerSeller?"active":""}  customer`}>
             <div class="customerBox">
                 <h1>CUSTOMER</h1>
-                <form action="/homepage" >
-                    <input type="email" name="emailAddress" id="custEmail" placeholder="E-mail Address" required/>
-                    <input type="text" name="password" id="custPswd" placeholder="Password" required/>
+                <form action="/home" onSubmit={handleSubmit(onsubmit)}>
+                    <input type="email"  {...register("email")} id="custEmail" placeholder="E-mail Address" required/>
+                    <input type="text" {...register("password")} id="custPswd" placeholder="Password" required/>
                     <div className='signandloginnear'>
-                    <Link to="/home"><button type="submit">LOGIN</button></Link>
+                    <button  type="submit">LOGIN</button>
                     <Link to="/signup"><button type="submit">SİGN UP</button></Link>
                     </div>
                     

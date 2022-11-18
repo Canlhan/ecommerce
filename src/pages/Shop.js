@@ -13,6 +13,7 @@ const Shop = () => {
 
   const categories=Usefetchdata("https://localhost:44301/api/category/getall");
   
+  console.log("categories: "+categories)
   return (
     <Fragment>
         <Navbar/>

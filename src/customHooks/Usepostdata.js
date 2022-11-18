@@ -15,9 +15,9 @@ const Usepostdata=(data)=>{
             body: JSON.stringify(data.object),
           });
           const json = await response.json();
-          const backres=JSON.stringify(json);
+         
 
-          console.log( "post data hooks "+json.message);
+        
           
           setMessage({success:json.success,message:json.message});
         }
@@ -25,8 +25,7 @@ const Usepostdata=(data)=>{
         fetchProduct();
       }, [data.url]);
       
-      
-
-    return message;
+     
+    return  message;
 }
 export default Usepostdata;
