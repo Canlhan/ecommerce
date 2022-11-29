@@ -1,82 +1,58 @@
 
 
-import React from 'react'
-import style from './addproductvendor.module.css'
+import React, { useState } from 'react'
+import AddProduct from '../components/addproduct/AddProduct'
+import style from './Addproductvendor.module.css'
 
 const AddProductVendor = () => {
   
+    const [menutog,setmenutog]=useState(false);
+    const togglelefmenu=()=>{
+
+        setmenutog(!menutog);
+    }
   
+    
     return (
     <>
 
                 <div class={style.container}>
-                <div class={style.navigation}>
-                <ul class="navigation_list">
-                    <li class="navigation_list_item">
-                        <a href="#">
-                            <span class="icon"><i class="fas fa-shopping-cart"></i></span>
-                            <span class="title">SİPARİŞLERİM</span>
-                        </a>
-                    </li>
-                    <li class="navigation_list_item">
-                        <a href="#">
-                            <span class="icon"><i class="fas fa_comments"></i></span>
-                            <span class="title">MESAJLARIM</span>
-                        </a>
-                    </li>
-                    <li class="navigation_list_item">
-                        <a href="#">
-                            <span class="icon"><i class="fas fa_heart"></i></span>
-                            <span class="title">TAKİP ETTİKLERİM</span>
-                        </a>
-                    </li>
-                    <li class="navigation_list_item">
-                        <a href="#">
-                            <span class="icon"><i class="fas fa_address_card"></i></span>
-                            <span class="title">ADRESİM</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="toggle"></div>
+                <div class={`${style.navigation} ${ menutog? style.active:""} `}>
+                        <ul class={`${style.navigation_list} ${style.addul}` }>
+                            <li class={style.navigation_list_item}>
+                                <a href="#">
+                                    <span class={style.icon}><i class="fas fa-shopping-cart"></i></span>
+                                    <span class={style.title}>SİPARİŞLERİM</span>
+                                </a>
+                            </li>
+                            <li class={style.navigation_list_item}>
+                                <a href="#">
+                                    <span class={style.icon}><i class="fas fa-comments"></i></span>
+                                    <span class={style.title}>MESAJLARIM</span>
+                                </a>
+                            </li>
+                            <li class={style.navigation_list_item}>
+                                <a href="#">
+                                    <span class={style.icon}><i class="fas fa-heart"></i></span>
+                                    <span class={style.title}>TAKİP ETTİKLERİM</span>
+                                </a>
+                            </li>
+                            <li class={style.navigation_list_item}>
+                                <a href="#">
+                                    <span class={style.icon}><i class="fas fa-address-card"></i></span>
+                                    <span class={style.title}>ADRESİM</span>
+                                </a>
+                            </li>
+                        </ul>
+                <div class={style.toggle} onClick={togglelefmenu}>
+                    
                 </div>
-                <div class="page_content">
-                <div class="product_add_page">
-                    <form enctype="multipart/form_data" action="__URL__" method="POST">
-                        <div class="data widthOneHundred">
-                            <div class="product_image"></div>
-                            <input type="file" id="file" name="productImage" accept="image/x_png,image/gif,image/jpeg"
-                                required />
-                        </div>
-                        <div class="data scaledWidth inclusive">
-                            <label for="productName">ÜRÜN ADI</label>
-                            <input type="text" name="productName" id="productName" required />
-                        </div>
-                        <div class="data scaledWidth inclusive">
-                            <label for="productCategory">ÜRÜN KATEGORİ</label>
-                            <select id="productCategory" required>
-                                <option value="">Kategori Seçiniz...</option>
-                                <option value="beyaz eşya">Beyaz Eşya</option>
-                                <option value="erkek giyim">Erkek Giyim</option>
-                                <option value="kadın giyim">Kadın Giyim</option>
-                                <option value="çocuk giyim">Çocuk Giyim</option>
-                            </select>
-                        </div>
-                        <div class="data scaledWidth inclusive">
-                            <label for="productPrice">ÜRÜN FİYAT</label>
-                            <input type="number" name="productPrice" id="productPrice" min="0" step="0.01" required />
-                        </div>
-                        <div class="data scaledWidth inclusive">
-                            <label for="productStock">ÜRÜN STOK MİKTARI</label>
-                            <input type="number" name="productStock" id="productStock" min="1" pattern="[0_9]" required />
-                        </div>
-                        <div class=" data widthOneHundred inclusive">
-                            <label for="productDescription">ÜRÜN AÇIKLAMASI</label>
-                            <textarea name="productDescription" id="productDescription" rows="5" required></textarea>
-                        </div>
-                        <input type="submit" value="ÜRÜN EKLE"/>
-                    </form>
+
                 </div>
-                </div>
+
+
+
+                <AddProduct style={style}/>
                 </div>
     </>
   )

@@ -58,7 +58,7 @@ const Navbar = () => {
           <Link to='/home' style={{color:'white'}}> buca.</Link> 
         </div>
         
-        <ul  className={`${  style.menu_list}  ${ isOpenMenuList || firstMenu ? style.closed:''} ${isOpenMenuList ? style.animation:''} `} >
+        <ul  className={`${  style.menu_list}  ${ isOpenMenuList || firstMenu ? style.closed:''} ${isOpenMenuList ? style.animation:''} ${style.navul} `} >
           <li   className={style.menu_list_item}>
            <Link to="/shop">SHOP</Link>
           </li>
@@ -74,7 +74,7 @@ const Navbar = () => {
             <Link to="/staffedit"> STAFF EDIT</Link>
           </li>
         </ul>
-        <ul className={style.icon_list}>
+        <ul className={`${style.icon_list} ${style.navul}`}>
           <li className={style.icon_list_item}>
             <i onClick={productadd} className="fas fa-user"></i>
           </li>

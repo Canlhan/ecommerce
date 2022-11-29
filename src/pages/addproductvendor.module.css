@@ -1,14 +1,26 @@
+:root {
+  --primary-color: #34495e;
+  --secondary-color: #dce4ec;
+  --paytoneOneFontFamily: "Paytone One", sans-serif;
+}
 
 
 
+a {
+  text-decoration: none;
+}
 
-  
-  .container {
+.addul {
+  list-style-type: none;
+  width: 100%;
+}
+
+.container{
     height: 100vh;
     display: flex;
   }
   
-  .page-content {
+  .page_content {
     flex-basis: 1;
     width: 100%;
   }
@@ -26,13 +38,13 @@
     overflow: hidden;
   }
   
-  .navigation-list-item {
+  .navigation_list_item {
     margin-bottom: 2rem;
     padding: 2rem 0;
     white-space: nowrap;
   }
   
-  .navigation-list-item a:hover {
+  .navigation_list_item a:hover {
     background-color: white;
     color: rgb(0, 119, 255);
   }
@@ -103,7 +115,7 @@
   
   /** product add page css kodları */
   
-  .product-add-page {
+  .product_add_page {
     width: 100%;
     height: 100%;
     display: flex;
@@ -112,49 +124,50 @@
     background-image: linear-gradient(45deg, rgb(0, 255, 234), rgb(0, 153, 255));
   }
   
-  .product-add-page form {
+  .product_add_page form {
     width: 80rem;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
   }
   
-  .product-add-page .data {
+  .product_add_page .data {
     margin: 1.6rem 0;
   }
   
-  .product-add-page .data.inclusive * {
+  .product_add_page .data.inclusive * {
     display: block;
     width: 100%;
   }
   
-  .product-add-page .data.inclusive input,
-  .product-add-page .data.inclusive textarea,
-  .product-add-page .data.inclusive select {
+  .product_add_page .data.inclusive input,
+  .product_add_page .data.inclusive textarea,
+  .product_add_page .data.inclusive select {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 1.4rem;
     color: black;
     padding: 0.6rem 1.4rem;
   }
   
-  .product-add-page .data.inclusive label {
+  .product_add_page .data.inclusive label {
     font-family: var(--paytoneOneFontFamily);
     font-size: 1.6rem;
     padding: 0.6rem 0;
     color: #34495e;
   }
   
-  .product-add-page .data.widthOneHundred {
+  .product_add_page .data.widthOneHundred {
     width: 100%;
   }
   
-  .product-add-page .data.scaledWidth {
+  .product_add_page .data.scaledWidth {
     width: 40%;
   }
   
-  .product-add-page .data .product-image {
+  .product_add_page .data .product_image {
     width: 16rem;
     height: 20rem;
+    background-color: white;
     border: 1px solid black;
     margin-bottom: 1rem;
     background-image: url("https://sosyalmedya.co/wp-content/uploads/2013/04/down-940x470.jpg");
@@ -163,18 +176,18 @@
     background-position: center;
   }
   
-  .product-add-page input[type="file"] {
+  .product_add_page input[type="file"] {
     font-size: 1.2rem;
     border: 1px solid var(--secondary-color);
     padding: 0 2rem 0 0 !important;
     font-family: "Lato", sans-serif;
   }
   
-  .product-add-page input[type="file"]:hover {
+  .product_add_page input[type="file"]:hover {
     border-color: var(--primary-color);
   }
   
-  .product-add-page input[type="file"]::file-selector-button {
+  .product_add_page input[type="file"]::file-selector-button {
     margin-right: 2rem;
     border: none;
     background: var(--secondary-color);
@@ -184,12 +197,12 @@
     transition: all 0.2s ease-in-out;
   }
   
-  .product-add-page input[type="file"]:hover::file-selector-button {
+  .product_add_page input[type="file"]:hover::file-selector-button {
     background: var(--primary-color);
     color: var(--secondary-color);
   }
   
-  .product-add-page input[type="submit"] {
+  .product_add_page input[type="submit"] {
     margin-right: 0;
     margin-left: auto;
     padding: 1rem 2.4rem;
@@ -202,7 +215,7 @@
     font-weight: 800;
     transition: all 0.6s;
   }
-  .product-add-page input[type="submit"]:hover {
+  .product_add_page input[type="submit"]:hover {
     color: #dce4ec;
     background-color: #34495e;
   }

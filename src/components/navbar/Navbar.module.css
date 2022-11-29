@@ -23,6 +23,7 @@
     transition: all 0.6s;
   }
   
+ 
   nav #websiteName {
     font-size: 4rem;
     font-weight: 900;
@@ -30,7 +31,7 @@
     cursor: none;
   }
   
-  nav ul {
+  .navul {
     display: flex;
     justify-content: space-around;
     align-items: center;
