@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { chartActions } from '../../store/chart-slice';
+import style from './chart.module.css'
 const ChartCardItem = (props) => {
   
   
@@ -37,20 +38,20 @@ const ChartCardItem = (props) => {
   return (
 
     <Fragment>
-        <div key={props.properties.productId} className="shopping-cart-product-picture"></div>
-                <p className="shopping-cart-product-name">{props.properties.productName}</p>
-                <div className="shopping-cart-product-quantity-setting">
-                    <input onClick={handleIncreaseQuantity} className="increase" type="button" value="-"/>
-                    <span className="shopping-cart-product-number">{props.properties.quantity}</span>
-                    <input onClick={handleDecreaseQuantity} className="reduce" type="button" value="+"/>
+        <div key={props.properties.productId} className="shopping_cart_product_picture"></div>
+                <p className={style.shopping_cart_product_name}>{props.properties.productName}</p>
+                <div className={style.shopping_cart_product_quantity_setting}>
+                    <input onClick={handleIncreaseQuantity} className={style.increase} type="button" value="_"/>
+                    <span className={style.shopping_cart_product_number}>{props.properties.quantity}</span>
+                    <input onClick={handleDecreaseQuantity} className={style.reduce} type="button" value="+"/>
 
                 </div>
                 
-                <div className="shopping-cart-product-price-information">
-                    <span className="shopping-cart-product-price" data-price="87">
+                <div className={style.shopping_cart_product_price_information}>
+                    <span className={style.shopping_cart_product_price} data_price="87">
                       {props.properties.price}</span><span>TL</span>
                 </div>
-                <i onClick={handleDeleteProduct} className="far fa-trash-alt shopping-cart-product-trash"></i>
+                <i onClick={handleDeleteProduct} className={`far fa-trash-alt  ${style.shopping_cart_product_trash}`}></i>
     </Fragment>
   )
 }

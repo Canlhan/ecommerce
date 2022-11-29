@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import Usepostdata from '../../customHooks/Usepostdata';
-import './signup.css'
+import styles from './signup.module.css'
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -42,33 +42,33 @@ const customer=useSelector(state=>state.customer.customer)
 
   <Fragment>
      
-        <div className="container">
-        <div className="form-container">
+        <div className={styles.container}>
+        <div className={styles.form_container}>
             <h2>KAYIT OL</h2>
-            <form className="form" onSubmit={handleSubmit(onsubmit)}>
-                <div className="data">
+            <form className={styles.form} onSubmit={handleSubmit(onsubmit)}>
+                <div className={styles.data}>
                     <label for="name">AD</label>
                     <input type="text" {...register("firstName")} id="name"/>
                 </div>
-                <div className="data">
+                <div className={styles.data}>
                     <label for="surName">SOYAD</label>
                     <input type="text" {...register("lastName")} id="surName"/>
                 </div>
-                <div className="data">
+                <div className={styles.data}>
                     <label for="dateOfBirth">DOĞUM TARİHİ</label>
                     <input type="datetime-local" {...register("date")} id="dateOfBirth"/>
                 </div>
-                <div className="data">
-                    <label for="mail">E-MAİL</label>
+                <div className={styles.data}>
+                    <label for="mail">E_MAİL</label>
                     <input type="email" {...register("email")} id="mail"/>
                 </div>
-                <div className="data">
+                <div className={styles.data}>
                     <label for="password">ŞİFRE</label>
                     <input type="password" {...register("password")} id="password"/>
                 </div>
-                <div className="data">
+                <div className={styles.data}>
                     <label for="phone">TEL</label>
-                    <input type="tel" {...register("contact")} id="phone" pattern="[0-9]{3}[0-9]{3}[0-9]{2}[0-9]{2}"/>
+                    <input type="tel" {...register("contact")} id="phone" pattern="[0_9]{3}[0_9]{3}[0_9]{2}[0_9]{2}"/>
                 </div>
                <input type="submit"  value="KAYIT OL"/>
             </form>

@@ -21,10 +21,7 @@ const chartSlice=createSlice(
                    state.products=[...state.products,action.payload];
                     
                 }
-                else{
-                    existingProduct.quantity+=1;
-                    console.log("chat slice"+existingProduct.quantity)
-                } 
+                
             },
             deleteProduct(state,action){
                 state.products=state.products.filter((item)=>

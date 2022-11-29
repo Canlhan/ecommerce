@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Usewindowsize from "../../customHooks/usewindowsize";
 
 import style from './Navbar.module.css'
@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const [isOpenMenuList,setMenuList]=useState(true);
   const [firstMenu,setFirstMenu]=useState(true);
-
+  const navigate=useNavigate();
   // burada redux yapısını kullandım
 
    const isOpenChart=  useSelector( state=> state.chart.isOpenChart)
@@ -45,6 +45,11 @@ const Navbar = () => {
         setFirstMenu(!firstMenu);
    }
    // menulist closed 
+   const productadd=()=>{
+
+    navigate("/addproduct")
+    
+   }
   return (
 
     <Fragment>
@@ -71,7 +76,7 @@ const Navbar = () => {
         </ul>
         <ul className={style.icon_list}>
           <li className={style.icon_list_item}>
-            <i className="fas fa-user"></i>
+            <i onClick={productadd} className="fas fa-user"></i>
           </li>
           <li className={style.icon_list_item}>
             <i className="fas fa-search"></i>

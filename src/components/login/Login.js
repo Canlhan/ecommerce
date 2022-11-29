@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import Usefetchdata from '../../customHooks/Usefetchdata'
 import Usepostdata from '../../customHooks/Usepostdata'
 import { customerActions } from '../../store/customer-slice'
-import  './login.css'
+import style from  './login.module.css'
 
 const Login = () => {
 
@@ -43,9 +43,9 @@ const Login = () => {
         if(customer!=null){
             dispatch(customerActions.addCustomer(data));
             console.log("null değile girdi"+customerredux.email);
-            const createChart=Usepostdata({url:"https://localhost:44301/api/cart/add",object:{dateCreated:Date.now(),customerID:`${customer.customerID}`}})
+            
 
-            console.log(customer+" için  "+createChart+" sepeti oluşturuldu")
+            
             navigate("/home")
             
         }
@@ -60,14 +60,14 @@ const Login = () => {
 
   return (
     <Fragment>
-        <div class="containerl">
-        <div class="component sellerPicture"></div>
+        <div class={style.containerl}>
+        <div class={`${style.component} ${style.sellerPicture}`}></div>
 
-        <div class={`component  ${ addedClassNameForSwitchCustomerSeller?"active":""}  customer`}>
-            <div class="customerBox">
+        <div class={`${style.component}  ${ addedClassNameForSwitchCustomerSeller?"active":""}  ${style.customer}`}>
+            <div class={style.customerBox}>
                 <h1>CUSTOMER</h1>
                 <form action="/home" onSubmit={handleSubmit(onsubmit)}>
-                    <input type="email"  {...register("email")} id="custEmail" placeholder="E-mail Address" required/>
+                    <input type="email"  {...register("email")} id="custEmail" placeholder="E_mail Address" required/>
                     <input type="text" {...register("password")} id="custPswd" placeholder="Password" required/>
                     <div className='signandloginnear'>
                     <button  type="submit">LOGIN</button>
@@ -77,15 +77,15 @@ const Login = () => {
                     
                 </form>
                 
-                 <button onClick={handlerSwitchcustomerSeller} class="loginPages">SELLER LOGIN PAGE</button>
+                 <button onClick={handlerSwitchcustomerSeller} class={style.loginPages}>SELLER LOGIN PAGE</button>
             </div>
         </div>
 
-        <div class="component seller">
-            <div class="sellerBox">
+        <div class={`${style.component} ${style.seller}`}>
+            <div class={style.sellerBox}>
                 <h1>SELLER</h1>
                 <form action="">
-                    <input type="email" name="emailAddress" id="sellEmail" placeholder="E-mail Address" required/>
+                    <input type="email" name="emailAddress" id="sellEmail" placeholder="E_mail Address" required/>
                     <input type="text" name="password" id="sellPswd" placeholder="Password" required/>
                     <div className='signandloginnear'>
                         <Link to="/profile/vendor"> <button type="submit">LOGIN</button></Link>
@@ -96,7 +96,7 @@ const Login = () => {
                 <button onClick={handlerSwitchcustomerSeller} class="loginPages">CUSTOMER LOGIN PAGE</button>
             </div>
         </div>
-        <div class={`component ${addedClassNameForSwitchCustomerSeller?"active":""}  customerPicture`}></div>
+        <div class={` ${style.component} ${addedClassNameForSwitchCustomerSeller?"active":""}   ${style.customerPicture}`}></div>
     </div>
     </Fragment>
   )

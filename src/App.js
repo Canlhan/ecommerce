@@ -14,8 +14,10 @@ import Chart from './components/Chart/Chart';
 import Login from './components/login/Login';
 import ConfirmChart from './pages/ConfirmChart';
 import { useDispatch, useSelector } from 'react-redux';
-import { chartActions } from './store/chart-slice';
+
 import Signup from './components/signup/Signup';
+import AddProductVendor from './pages/AddProductVendor';
+
 
 
 
@@ -30,20 +32,22 @@ function App() {
     <React.Fragment>
       
      
-
+     
       <Routes>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/confirmChart' element={<ConfirmChart/>}/>
         <Route path='/shop/:categoryId/:productId' element={<ProductDetail/>}/>
-          <Route path='/shop/:categoryId'  element={<CategoryDetail/>}/>
-          <Route path='/shop' element={<Shop/>} />
-          <Route path='/home' element={<HomePage/>}/>
-          <Route path='/' element={<Login/>}/>
-         
-         
-
+        <Route path='/shop/:categoryId'  element={<CategoryDetail/>}/>
+        <Route path='/shop' element={<Shop/>} />
+        <Route path='/home' element={<HomePage/>}/>
+        <Route path='/' element={<Login/>}/>
+        <Route path='/addproduct' element={<AddProductVendor/>}/>
+      
       </Routes>
+      
       <Chart/>
+      
+      
       
      
     </React.Fragment>

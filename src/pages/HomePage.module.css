@@ -333,6 +333,23 @@ footer {
   font-size: 2.4rem;
 }
 
+/* dsfsssssssssssssss*/
+a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.invisible {
+  display: none;
+}
+
+
+
+
+
+
 /*/ ///////////////// ekran boyutu ayarlama /////////////////////////*/
 
 @media screen and (max-width: 1550px) {

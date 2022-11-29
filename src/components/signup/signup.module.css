@@ -1,6 +1,4 @@
-html {
-    font-size: 10px;
-}
+
 
 .container {
     width: 100%;
@@ -14,12 +12,12 @@ html {
     background-position: center;
 }
 
-.form-container {
+.form_container {
     background-color: rgba(0, 0, 0, .5);
     padding: 3rem;
 }
 
-.form-container h2 {
+.form_container h2 {
     text-align: center;
     font-size: 3.2rem;
     font-family: var(--SourceSerifPro);

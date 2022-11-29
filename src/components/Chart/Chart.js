@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import Usefetchdata from '../../customHooks/Usefetchdata';
 import { chartActions } from '../../store/chart-slice';
-import './chart.css'
+import style from  './chart.module.css'
 import ChartCardItem from './ChartCardItem';
 const Chart = () => {
   const [quantity,setQuantity]=useState(1);
@@ -15,9 +15,10 @@ const Chart = () => {
     const totalPrice=useSelector(state=>state.chart.sumPrice);
     const customer=useSelector(state=>state.customer.customer);
     let totalprice=0;
+
     let chartClosed=""
     if(!isOpenChart){
-        chartClosed="closed"
+        chartClosed=style.closed
     }
     // chart getirilcek müşteri idsine göre 
     const cart=Usefetchdata(`https://localhost:44301/api/carts/getbyid/4`)
@@ -31,7 +32,9 @@ const Chart = () => {
     // emaille kullanıcı griiş yaptığında bize apinin customer  dönmesi lazım 
 
     console.log("category detail "+products.map((item)=>console.log("productName CHART: "+item.productID)))
+
     const handleClosChart=()=>{
+      
       dispatch(chartActions.toggleChart())
     }
    
@@ -53,14 +56,16 @@ const Chart = () => {
   return (
     <Fragment>
         
-   <div class={`shopping-cart-box  ${chartClosed}  animation`} onMouseLeave={handleClosChart}>
+   <div class={`${style.shopping_cart_box} ${ chartClosed} animation` }  onMouseLeave={handleClosChart}>
+
+
        {
            products.length===0 ? 
            
-           <div class="warning-message">SEPETİNİZDE ÜRÜN BULUNMAMAKTADIR</div> 
+           <div class={style.warning_message}>SEPETİNİZDE ÜRÜN BULUNMAMAKTADIR</div> 
            
              :
-           products.map((product)=> <li key={product.productID} class="shopping-cart-product">
+           products.map((product)=> <li key={product.productID} class={style.shopping_cart_product}>
             
              <ChartCardItem properties={product} /> </li>)
            
@@ -69,9 +74,9 @@ const Chart = () => {
           
        }
 
-        <div class="cart-information">
-            <Link to="/confirmChart" totalprice={totalPrice}> <button  class="cart-confirmation-button">SEPETİ ONAYLA</button></Link>
-            <div class="cart-price-information"><span class="total-price">
+        <div class={style.cart_information}>
+            <Link to="/confirmChart" totalprice={totalPrice}> <button  class={style.cart_confirmation_button}>SEPETİ ONAYLA</button></Link>
+            <div class={style.cart_price_information}><span class={style.total_price}>
               </span>{totalPrice}<span>TL</span></div>
         </div>
         

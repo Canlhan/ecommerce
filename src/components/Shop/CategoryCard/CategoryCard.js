@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
-import './CategoryCard.css'
+import styles from './CategoryCard.module.css'
 import CategoryProductCardItem from './CategoryProductCardItem'
 
-import Shoesize from './Shoesize'
+
 const shozesize=[{value:"36"},{value:"37"},{value:"38"},{value:"39"},{value:"40"},{value:"40"},{value:"40"}]
 
 const CategoryCard = (props) => {
@@ -13,7 +13,7 @@ const CategoryCard = (props) => {
     <Fragment>
      
         
-        <CategoryProductCardItem  product={props.item} shozesize={shozesize}/>
+        <CategoryProductCardItem  styles={styles} product={props.item} shozesize={shozesize}/>
     
  
     </Fragment>
