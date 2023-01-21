@@ -17,6 +17,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Signup from './components/signup/Signup';
 import AddProductVendor from './pages/AddProductVendor';
+import SellerLogin from './components/login/SellerLogin';
+import SellerSignup from './components/signup/SellerSignup';
 
 
 
@@ -41,6 +43,7 @@ function App() {
         <Route path='/shop' element={<Shop/>} />
         <Route path='/home' element={<HomePage/>}/>
         <Route path='/' element={<Login/>}/>
+        <Route path='/sellersignup' element={<SellerSignup/>}/>
         <Route path='/addproduct' element={<AddProductVendor/>}/>
       
       </Routes>

@@ -38,35 +38,39 @@ a {
     overflow: hidden;
   }
   
+ 
   .navigation_list_item {
     margin-bottom: 2rem;
     padding: 2rem 0;
     white-space: nowrap;
   }
   
-  .navigation_list_item a:hover {
+  .navigation_list_item .menuoptions:hover {
     background-color: white;
     color: rgb(0, 119, 255);
   }
   
-  .navigation a {
+  .navigation .menuoptions {
     display: block;
     padding: 2rem 0;
     border-radius: 3rem;
     font-size: 2rem;
     color: white;
   }
-  
-  .navigation a span {
+  .menuoptions.active{
+    background-color: white;
+    color:rgb(0, 119, 255); 
+  }
+  .navigation .menuoptions span {
     display: inline-block;
     height: 100%;
   }
   
-  .navigation a .icon {
+  .navigation .menuoptions .icon {
     padding: 0 2rem;
   }
   
-  .navigation a .title {
+  .navigation .menuoptions .title {
     padding-left: 2rem;
     white-space: nowrap;
   }

@@ -1,0 +1,105 @@
+
+
+
+.product_deletion_page {
+    width: 100%;
+    height: 100%;
+   display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .product_deletion_page table {
+    border-collapse: collapse;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    cursor: default;
+  }
+  
+  .product_deletion_page table thead tr {
+    font-size: 1.6rem;
+    background-color: #009879;
+    color: #fff;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .product_deletion_page table th,
+  .product_deletion_page table td {
+    padding: 1.5rem 1.8rem;
+  }
+  
+  .product_deletion_page table tbody tr {
+    border-bottom: 1px solid #ddd;
+    font-size: 1.4rem;
+  }
+  
+  .product_deletion_page table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .product_deletion_page table tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+  }
+  
+  .product_deletion_page table tbody tr td:hover i.fa-trash {
+    color: red;
+  }
+  
+  .product_deletion_page .delete_confirmation_page {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+  }
+  
+  .product_deletion_page .delete_confirmation_page.active {
+    display: flex;
+  }
+  
+  .product_deletion_page .delete_confirmation_box {
+    border-radius: 1.2rem;
+    min-width: 40rem;
+    padding: 6rem 3rem;
+    background-color: white;
+  }
+  
+  .product_deletion_page .delete_confirmation_box p {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+  
+  .product_deletion_page .confirm_buttons {
+    margin-top: 3.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  
+  .product_deletion_page .confirm_button {
+    padding: 1.2rem 4rem;
+    border: none;
+    outline: none;
+    border-radius: 1.2rem;
+    font-weight: bold;
+    letter-spacing: 1.2px;
+    color: white;
+    transition: all 0.4s;
+  }
+  
+  .product_deletion_page .confirm_buttons .yes {
+    background-color: rgb(0, 201, 0);
+  }
+  
+  .product_deletion_page .confirm_buttons .no {
+    background-color: red;
+  }
+  
+  .product_deletion_page .confirm_button:hover {
+    background-color: rgb(236, 154, 2);
+  }

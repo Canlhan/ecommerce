@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux';
 import Usefetchdata from '../../customHooks/Usefetchdata';
 import Usepostdata from '../../customHooks/Usepostdata';
+
+
 const AddProduct = ({style}) => 
 {   
     
@@ -27,7 +29,7 @@ const AddProduct = ({style}) =>
   return (
 
     <>
-        <div class={style.page_content}>
+        
                 <div class={style.product_add_page}>
                     <form encType="multipart/form-data" action="#" onSubmit={handleSubmit(onsubmit)}>
                         <div class={`${style.data} ${style.widthOneHundred}`}>
@@ -69,7 +71,15 @@ const AddProduct = ({style}) =>
                         <input type="submit" value="ÜRÜN EKLE"/>
                     </form>
                 </div>
-                </div>
+                
+            
+            
+               
+
+
+
+
+                
     </>
   )
 }

@@ -1,0 +1,114 @@
+
+
+.order_confirmation_page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.order_confirmation_page table {
+  border-collapse: collapse;
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  cursor: default;
+}
+
+.order_confirmation_page thead tr {
+  font-size: 1.6rem;
+  background-color: #009879;
+  color: #fff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.order_confirmation_page table th,
+.order_confirmation_page table td {
+  padding: 1.5rem 1.8rem;
+}
+
+.order_confirmation_page table tbody tr {
+  border-bottom: 1px solid #ddd;
+  font-size: 1.4rem;
+}
+
+.order_confirmation_page table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.order_confirmation_page table tbody tr:last-of-type {
+  border-bottom: 2px solid #009879;
+}
+
+.order_confirmation_page table td button {
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.7rem;
+  border: none;
+  outline: none;
+  background-color: rgb(255, 166, 0);
+  color: white;
+  transition: all 0.5s;
+}
+
+.order_confirmation_page table td button:hover {
+  background-color: rgb(143, 93, 0);
+}
+
+.order_confirmation_page .order_confirmation_frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.order_confirmation_page .order_confirmation_frame.active {
+  display: flex;
+}
+
+.order_confirmation_page .order_confirmation_box {
+  border-radius: 1.2rem;
+  min-width: 40rem;
+  padding: 6rem 3rem;
+  background-color: white;
+}
+
+.order_confirmation_page .order_confirmation_box p {
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.order_confirmation_page .confirm_buttons {
+  margin-top: 3.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.order_confirmation_page .confirm_button {
+  padding: 1.2rem 4rem;
+  border: none;
+  outline: none;
+  border-radius: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  color: white;
+  transition: all 0.4s;
+}
+
+.order_confirmation_page .confirm_buttons .yesOrder {
+  background-color: rgb(0, 201, 0);
+}
+
+.order_confirmation_page .confirm_buttons .noOrder {
+  background-color: red;
+}
+
+.order_confirmation_page .confirm_button:hover {
+  background-color: rgb(236, 154, 2);
+}
