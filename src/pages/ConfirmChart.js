@@ -1,13 +1,54 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import ChartCardItem from '../components/Chart/ChartCardItem'
 import Navbar from '../components/navbar/Navbar'
-import './confirmChart.css'
-import style from  '../components/Chart/chart.module.css'
+import '../components/Chart/chart.module.css'
+import style from  './confirmChart.module.css'
+import Footer from '../components/homepageother/Footer'
 
 const ConfirmChart = (props) => {
     const products=useSelector((state)=>state.chart.products);
     const totalPrice=useSelector((state)=>state.chart.sumPrice);
+    const[isCreate,setOrder]=useState(false);
+
+    const BASE_URL="https://localhost:44301/api/";
+    const customerId=localStorage.getItem("customerId");
+
+    
+    console.log(customerId);
+    const[addedOrder,setAddedOrder]=useState({customerId:16,state:0});
+
+    const createOrders=()=>{
+        console.log("sepete onaylaya basıldı")
+        setOrder(true);
+    }
+
+
+    const postOrder = async()=>{
+
+        console.log(addedOrder);
+        console.log("post order")
+        const url=BASE_URL+"Orders/addorder";
+        console.log(url)
+       const result= await fetch(url,{
+           method:'POST',
+           headers:{
+               'Content-type':'application/json'
+           },
+           body:JSON.stringify(addedOrder)
+       })
+       console.log(result);
+      
+    }
+
+    useEffect(()=>{
+
+        if(isCreate){
+            console.log("post order useeffect")
+            postOrder();
+        }
+    },[isCreate])
+
   return (
     <Fragment>
        <nav style={{height:'10rem',backgroundColor:'brown',color:'white',textAlign:'center',fontSize:'4.6rem'}}>
@@ -23,13 +64,10 @@ const ConfirmChart = (props) => {
                 }
                
             </div>
-            <h2><span>Önerilen Ürünler</span></h2>
-            <div id="recommended" class={style.recommended_products}>Ürün Kartları Buraya Gelecek</div>
-            <h2><span>Benzer Ürünler</span></h2>
-            <div id="similar" class={style.recommended_products}>Ürün Kartları Buraya Gelecek</div>
+            
         </div>
         <div class={style.order_confirmation}>
-            <button>Sepeti Onayla<i class={`${style.fas} ${style.fa_angle_right}`}></i></button>
+            <button onClick={createOrders}>Sepeti Onayla<i class={`${style.fas} ${style.fa_angle_right}`}></i></button>
             <div class={style.order_summary}>
                 <h2>Sipariş Özeti</h2>
                 <div class={style.total_order_price}>
@@ -39,7 +77,7 @@ const ConfirmChart = (props) => {
             </div>
         </div>
     </main>
-    <footer> Footer Buraya Gelecek</footer>
+   <Footer/>
     </Fragment>
   )
 }

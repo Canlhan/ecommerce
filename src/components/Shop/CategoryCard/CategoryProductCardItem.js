@@ -37,7 +37,7 @@ email:"",password:"",contact:""}});
         setData(product);
 
         dispatch(chartActions.setTrueChart())
-        dispatch(chartActions.addProduct({...product}))
+        dispatch(chartActions.addProduct({...product,quantity:1}))
     }
     
   return (

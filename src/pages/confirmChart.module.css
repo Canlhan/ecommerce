@@ -3,24 +3,26 @@ main {
     display: flex;
     align-items: top;
     justify-content: center;
+    position: relative;
+    top: 10rem;
 }
 
-.product-container {
+.product_container {
     flex-basis: auto;
     width: 100%;
 }
 
-.product-container h2 {
+.product_container h2 {
     font-size: 2.4rem;
     font-family: var(--Noto);
     font-weight: 400;
 }
 
-.product-container h2 span {
+.product_container h2 span {
     border-bottom: 4px solid orangered;
 }
 
-.recommended-products {
+.recommended_products {
     margin-bottom: 4rem;
     border-top: 1px solid black;
     padding: 5rem 0;
@@ -32,13 +34,30 @@ main {
     font-size: 6.4rem;
 }
 
-.shopping-cart-list {
+.shopping_cart_list {
     margin: 2rem 0 3rem;
     box-shadow: 0 0 5px black;
     
 }
-
-.order-confirmation {
+.shopping_cart_product {
+    font-size: 1.8rem;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    margin: 1rem 0;
+    
+  }
+  .shopping_cart_product input {
+    background-color: white;
+    color: orange;
+    border: 1px solid orange;
+    padding: 1rem;
+    font-weight: 800;
+    font-size: 1.4rem;
+  }
+.order_confirmation {
     position: sticky;
     top: 5rem;
     width: 35rem;
@@ -46,7 +65,7 @@ main {
     height: 30rem;
 }
 
-.order-confirmation button {
+.order_confirmation button {
     width: 100%;
     padding: 1rem 2rem;
     background-color: rgb(255, 102, 0);
@@ -59,28 +78,28 @@ main {
     transition: all .6s;
 }
 
-.order-confirmation button:hover {
+.order_confirmation button:hover {
     background-color: rgb(255, 153, 0);
 }
 
-.order-confirmation button i {
+.order_confirmation button i {
     margin-left: .6rem;
 }
 
-.order-summary {
+.order_summary {
     padding: 2rem 1rem;
     margin-top: 3rem;
     box-shadow: 0 0 10px black;
 }
 
-.order-summary h2 {
+.order_summary h2 {
     font-size: 2.4rem;
     font-weight: 400;
     padding: 1rem 0;
     border-bottom: 1px solid black;
 }
 
-.total-order-price {
+.total_order_price {
     padding: 2rem 0;
     font-size: 1.6rem;
     display: flex;

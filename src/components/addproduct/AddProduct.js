@@ -47,6 +47,7 @@ const AddProduct = ({style}) =>
     const addProduct =async()=>{
 
         const url=BASE_URL+"Products/add";
+        
         const response = await fetch(url,{
             method:"POST",
             headers:{

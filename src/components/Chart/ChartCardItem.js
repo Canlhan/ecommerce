@@ -41,8 +41,11 @@ const ChartCardItem = (props) => {
         <div key={props.properties.productId} className="shopping_cart_product_picture"></div>
                 <p className={style.shopping_cart_product_name}>{props.properties.productName}</p>
                 <div className={style.shopping_cart_product_quantity_setting}>
-                    <input onClick={handleIncreaseQuantity} className={style.increase} type="button" value="_"/>
-                    <span className={style.shopping_cart_product_number}>{props.properties.quantity}</span>
+                    <input onClick={handleIncreaseQuantity} className={style.increase} type="button" value="-"/>
+                    <span className={style.shopping_cart_product_number}>
+                      {props.properties.quantity}
+                    
+                    </span>
                     <input onClick={handleDecreaseQuantity} className={style.reduce} type="button" value="+"/>
 
                 </div>
