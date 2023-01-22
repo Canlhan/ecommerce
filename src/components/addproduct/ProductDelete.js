@@ -1,25 +1,78 @@
 
 
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import ProductDeleteFeedback from './feedbacks/ProductDeleteFeedback'
 import style from './ProductDelete.module.css'
-const ProductDelete = () => {
+import VendorProductDelete from './VendorProductDelete/VendorProductDelete';
+const ProductDelete = ({product}) => {
+
+    const BASE_URL="https://localhost:44301/api/";
+    const[isdeleteId,setDelete]=useState(null);
+const navigate=useNavigate();
+    const[getvendorProducts,setVendorProducts]=useState([]);
+    const vendorId=localStorage.getItem("sellerId");
+
+    const[deletedVendorProduct,setDeleteVendorProduct]=useState(null);
+    const[deleteProduct,setDeleteProduct]=useState(null);
 
 
+    const vendorProducts=async()=>{
+    
+        const url=BASE_URL+`VendorProducts/getallbyvendorid/${vendorId}`
+        const result=await fetch(url);
+        const resultjson= await result.json();
+
+        if(resultjson!==undefined){
+            setVendorProducts(resultjson.data);
+            console.log(resultjson)
+        }
+    
+    }
+    
+    useEffect(()=>{
+                console.log("sdfsdfsdfsdffd")
+                vendorProducts();
+    },[])
+
+   
+
+    
+
+    const deleteProductt=  async ()=>{
+
+        console.log(deletedVendorProduct);
+        console.log(deleteProduct);
+        const url=BASE_URL+`Products/deleteVenProduct/${deletedVendorProduct}/${deleteProduct}`
+        const result=await fetch(url);
+        const resultjson= await result.json();
+        
+    
+        if(resultjson!==undefined){
+            
+            setDeleteProduct(resultjson.data);
+        }
+
+    }
+
+
+    useEffect(()=>{
+
+        if(deletedVendorProduct!==null &&  deleteProduct!==null){
+            deleteProductt();
+            window.location.reload(true)
+        }
+       
+
+    },[deletedVendorProduct,deleteProduct])
   return (
 
     <>
     
     <div class={`${style.product_deletion_page} ${style.page}`}>
-                <div class={`${style.delete_confirmation_page}`}>
-                    <div class={`${style.delete_confirmation_box}`}>
-                        <p>Bu ürünü silmek istediğinize emin misiniz?</p>
-                        <div class={`${style.confirm_buttons}`}>
-                            <button class={`${style.confirm_button} ${style.yes}`}>EVET</button>
-                            <button class={`${style.confirm_button} ${style.no}`}>HAYIR</button>
-                        </div>
-                    </div>
-                </div>
+                
+                
                 <table>
                     <thead>
                         <tr>
@@ -33,22 +86,15 @@ const ProductDelete = () => {
                     </thead>
                     <tbody class={`${style.product_list}`}>
                         
-                        <tr data_id="12">
-                            <td>Resim</td>
-                            <td>Nike</td>
-                            <td>Ayakkabı</td>
-                            <td>28</td>
-                            <td>2400</td>
-                            <td class={`${style.trash}`}><i class="fas fa-trash"></i></td>
-                        </tr>
-                        <tr data_id="13">
-                            <td>Resim</td>
-                            <td>Adidas</td>
-                            <td>Ayakkabı</td>
-                            <td>36</td>
-                            <td>2260</td>
-                            <td class={`${style.trash}`}><i class="fas fa-trash"></i></td>
-                        </tr>
+                        {
+                            getvendorProducts.map((vendorProduct)=>{
+                            
+                                return  <VendorProductDelete setId={setDeleteVendorProduct} setProductıd={setDeleteProduct} product={vendorProduct}  style={style}/>
+                            
+                            })
+                        }
+                      
+                        
                     </tbody>
                 </table>
             </div>

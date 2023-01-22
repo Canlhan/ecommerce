@@ -60,7 +60,7 @@
   }
   
   .product_stock_update_page .update_confirmation_page {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;

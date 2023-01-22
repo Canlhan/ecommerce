@@ -36,7 +36,7 @@ const customer=useSelector(state=>state.customer.customer)
   
     const registerCustomer= async ()=>{
 
-        const url=BASE_URL+"Auth/register";
+        const url=BASE_URL+"Auth/customerregister";
         const response = await fetch(url,{
             method:"POST",
             headers:{

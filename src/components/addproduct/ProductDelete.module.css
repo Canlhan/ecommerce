@@ -47,7 +47,7 @@
   }
   
   .product_deletion_page .delete_confirmation_page {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     position: fixed;

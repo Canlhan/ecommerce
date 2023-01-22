@@ -9,6 +9,7 @@ const CategoryProductCardItem = ({styles,product}) => {
     
     const dispatch=useDispatch();
     const [addProduct,setAddProduct]=useState(false);
+    console.log(product);
     const[data,setData]=useState({url:"",object:{firstname:"",lastname:"",
 email:"",password:"",contact:""}});
     
@@ -19,7 +20,7 @@ email:"",password:"",contact:""}});
     useEffect(()=>{
         setData({url:"",object:{}})
     },[])
-    const message=Usepostdata(data);
+    
     console.log("Category  product cart item içindeki product: "+JSON.stringify(product))
     const handlerHover=(e)=>{
         
@@ -48,14 +49,14 @@ email:"",password:"",contact:""}});
                     <div className={styles.discount_tag}>_30%</div>
                     
                 </div>
-                <Link to={product.productID}>
+                
                 <div ref={image}   className={styles.shoes_image} style={{backgroundImage:
                     onHover===true?'url(https://picsum.photos/200/300)':'url(https://picsum.photos/300/300)'
                 }}
                     data-first="https://picsum.photos/200/300"
                     data-second="https://picsum.photos/200/300">
                 </div>
-                </Link>
+               
                 
                 <div className={styles.shoes_image_list}>
                     <div className={styles.shoes_image_list_item}></div>
