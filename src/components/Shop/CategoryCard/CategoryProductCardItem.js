@@ -9,7 +9,7 @@ const CategoryProductCardItem = ({styles,product}) => {
     
     const dispatch=useDispatch();
     const [addProduct,setAddProduct]=useState(false);
-    console.log(product);
+    
     const[data,setData]=useState({url:"",object:{firstname:"",lastname:"",
 email:"",password:"",contact:""}});
     
@@ -36,6 +36,7 @@ email:"",password:"",contact:""}});
         console.log("basıldı")
         setData(product);
 
+        console.log(product);
         dispatch(chartActions.setTrueChart())
         dispatch(chartActions.addProduct({...product,quantity:1}))
     }
@@ -59,9 +60,9 @@ email:"",password:"",contact:""}});
                
                 
                 <div className={styles.shoes_image_list}>
-                    <div className={styles.shoes_image_list_item}></div>
-                    <div className={styles.shoes_image_list_item}></div>
-                    <div className={styles.shoes_image_list_item}></div>
+                    <div ></div>
+                    <div></div>
+                    <div ></div>
                 </div>
                 
                 <div className={styles.shoe_sizes}>

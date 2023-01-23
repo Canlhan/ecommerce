@@ -3,17 +3,35 @@
 
 
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import OrderAcceptFeedback from './feedbacks/OrderAcceptFeedback';
 import OrderItem from './orderitems/OrderItem';
 import style from './ProductOrderAccept.module.css'
 
 
 const ProductOrderAccept = () => {
-
+    const BASE_URL="https://localhost:44301/api/";
     const[isConfirmOrder,setConfirm]=useState(false);
 
+    const[orderedProducts,setProduct]=useState([]);
 
+    const vendorId=localStorage.getItem("sellerId");
+
+    const getOrderedProduct=async ()=>{
+
+        const url=BASE_URL+`OrderedProduct/getbyorderedproduct/${vendorId}`
+      const result=await fetch(url);
+      const json=await result.json();
+      const orderedProducts=json.data;
+     
+      setProduct(orderedProducts);
+      
+    }
+
+    useEffect(()=>{
+        getOrderedProduct();
+
+    },[])
     const  changeConfirmTrue=()=>{
 
         setConfirm(true);
@@ -30,9 +48,7 @@ const ProductOrderAccept = () => {
   
   <div className={`${style.order_confirmation_page} ${style.page}`}>
                 
-                {
-                     isConfirmOrder && <OrderAcceptFeedback changeConfirmFalse={changeConfirmFalse} changeTrueconfirm={changeConfirmTrue} style={style} />
-                }
+              
                 
                 <table>
                     <thead>
@@ -40,7 +56,7 @@ const ProductOrderAccept = () => {
                             <th>SİPARİŞ VEREN KİŞİ</th>
                             <th>SİPARİŞ EDİLEN ÜRÜN</th>
                             <th>SİPARİŞ EDİLEN ÜRÜN ADEDİ</th>
-                            <th>TESLİM EDİLECEK ADRES BİLGİSİ</th>
+                            
                             <th>SİPARİŞ TARİHİ</th>
                             <th></th>
                         </tr>
@@ -48,7 +64,13 @@ const ProductOrderAccept = () => {
                     <tbody className={style.order_list}>
                         
 
-                        <OrderItem order={{id:1}} style={style} changeConfirm={changeConfirmTrue}/>
+                        {
+                            orderedProducts.map((ordereProduct)=>{
+
+                                return <OrderItem order={ordereProduct} style={style} changeConfirm={changeConfirmTrue}/>
+                            })
+                        }
+                        
                         
                         
                     </tbody>

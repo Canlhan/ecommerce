@@ -11,12 +11,14 @@ const ConfirmChart = (props) => {
     const totalPrice=useSelector((state)=>state.chart.sumPrice);
     const[isCreate,setOrder]=useState(false);
 
+    const[isfinishOrder,setFinishOrder]=useState(false);
     const BASE_URL="https://localhost:44301/api/";
     const customerId=localStorage.getItem("customerId");
 
+    const[Orders,setOrders]=useState(null);
     
     console.log(customerId);
-    const[addedOrder,setAddedOrder]=useState({customerId:16,state:0});
+    const[addedOrder,setAddedOrder]=useState({customerId:16});
 
     const createOrders=()=>{
         console.log("sepete onaylaya basıldı")
@@ -31,13 +33,16 @@ const ConfirmChart = (props) => {
         const url=BASE_URL+"Orders/addorder";
         console.log(url)
        const result= await fetch(url,{
-           method:'POST',
+           method:"POST",
            headers:{
                'Content-type':'application/json'
            },
            body:JSON.stringify(addedOrder)
        })
-       console.log(result);
+       const json=await result.json();
+       setFinishOrder(true);
+       setOrders(json.data)
+       console.log(JSON.stringify(json));
       
     }
 
@@ -49,6 +54,35 @@ const ConfirmChart = (props) => {
         }
     },[isCreate])
 
+
+    const postOrderItems=async (product)=>{
+
+        const url=BASE_URL+"OrderedProduct/add";
+        console.log({vendorProductID:product.vendorProductID,orderID:Orders.orderID,quantity:product.quantity,state:0})
+        console.log(url)
+       const result= await fetch(url,{
+           method:"POST",
+           headers:{
+               'Content-type':'application/json'
+           },
+           body:JSON.stringify({VendorProductID:product.vendorProductID,OrderID:Orders.orderID,Quantity:product.quantity,State:0})
+       })
+       
+    }
+    useEffect(()=>{
+
+        if(isfinishOrder){
+
+            products.forEach(element => {
+                console.log(element.productId);
+                postOrderItems(element);
+            });
+            
+        }
+    },[isfinishOrder])
+
+  
+
   return (
     <Fragment>
        <nav style={{height:'10rem',backgroundColor:'brown',color:'white',textAlign:'center',fontSize:'4.6rem'}}>
@@ -59,8 +93,10 @@ const ConfirmChart = (props) => {
             <h2>Sepetim</h2>
             <div class={style.shopping_cart_list}>
                 {
-                  products.map((product,index)=> <li key={index} class={style.shopping_cart_product}>
-                      <ChartCardItem properties={{productId:product.productId,productName:product.productName,price:product.price,quantity:product.quantity}}/> </li>)
+                  products.map((product,index)=> {
+                   
+                   return <li key={index} class={style.shopping_cart_product}>
+                      <ChartCardItem  properties={{productId:product.productId,productName:product.productName,price:product.price,quantity:product.quantity}}/> </li>})
                 }
                
             </div>
