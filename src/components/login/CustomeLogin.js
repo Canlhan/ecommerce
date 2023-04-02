@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
-import { getAuthority, loginCustomer } from '../../service/UserService';
+import { getAuthority, loginUser } from '../../service/UserService';
 
 const CustomeLogin = ({style,activefalse,isactive}) => {
   
@@ -28,14 +28,16 @@ const CustomeLogin = ({style,activefalse,isactive}) => {
    } 
   const loginnCustomer=(data)=>{
       
-    loginCustomer(data).then((response)=>{
+    loginUser(data).then((response)=>{
       localStorage.setItem("token",response)
       const authority= getAuthority(response);
-      console.log("roleee: "+authority);
       setLogin(true)
+      localStorage.setItem("role",authority);
+
       if(authority!="CUSTOMER"){
           alert("müşteri değilsiniz...")
           setLogin(false)
+          localStorage.removeItem("role");
       }
       
       

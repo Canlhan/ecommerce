@@ -5,24 +5,45 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { getAuthority, loginUser } from '../../service/UserService';
 
 const SellerLogin = ({style,activetrue}) => {
-    const BASE_URL="https://localhost:44301/api/";
-    const[enteredSeller,setSeller]=useState(null);
+
     const[isLogin,setLogin]=useState(false);
     const navigate=useNavigate();
-    const[role,setRole]=useState({id:null,name:""});
+    
     const{register,handleSubmit}=useForm();
 
-    const[enteredVendor,setVendor]=useState();
     const switchtocustomer=()=>{
         activetrue();
     }
     
     const onsubmit=(data)=>{
-
-        setSeller(data);
+        loginVendor(data);
     }
+
+    const loginVendor = (data) => {
+        loginUser(data)
+          .then((response) => {
+            localStorage.setItem("token", response);
+            const authority = getAuthority(response);
+            setLogin(true);
+            localStorage.setItem("role", authority);
+      
+            if (authority !== "VENDOR") {
+              alert("satıcı değilsiniz...");
+              setLogin(false);
+              localStorage.removeItem("role");
+            }
+            navigate("/addproduct")
+          })
+          .catch((error) => {
+            setLogin(false);
+          });
+      };
+
+      
+    /*
     // check roleeeeeeeeeeeeeeeeee
     const checkRoles=async()=>{
 
@@ -55,6 +76,7 @@ const SellerLogin = ({style,activetrue}) => {
         
 
     },[enteredSeller])
+   
 // check roleeeeeeeeeeeeeeeeee finish
 
 //login

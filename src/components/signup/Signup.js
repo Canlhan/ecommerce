@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import CustomerContext from '../../context/customerContext';
 import Usepostdata from '../../customHooks/Usepostdata';
-import { createCustomer } from '../../service/UserService';
+import { createCustomer} from '../../service/UserService';
 import styles from './signup.module.css'
 
 const Signup = () => {
@@ -31,7 +31,7 @@ const Signup = () => {
  
  
     const onsubmit=(data)=>{
-       createCustomer(data).then((response)=>{
+        createCustomer(data).then((response)=>{
          setCustomer(response);
          
         console.log("response: "+JSON.stringify(response));

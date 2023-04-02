@@ -1,7 +1,10 @@
 
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+import VendorContext from '../../context/vendorContext';
+import { createVendor } from '../../service/UserService';
 import styles from './signup.module.css'
 
 
@@ -9,19 +12,31 @@ const SellerSignup = () => {
 
     const BASE_URL="https://localhost:44301/api/";
     const{register,handleSubmit}=useForm();
+    const navigate=useNavigate();
+    const{vendor,setVendor}=useContext(VendorContext);
 
-    const[seller,setSeller]=useState(null);
+    
 
 
     const onsubmit=(data)=>{
 
-        console.log("react formdan geldi "+JSON.stringify(data) );
-        setSeller(data);
-        //console.log("kayıt  durumu: "+JSON.stringify(success));
-        
-       
+        console.log("react formdan geldi "+JSON.stringify(data));
+        createVendor(data).then((response)=>{
+            setVendor(response)
+            console.log("response vendor: "+JSON.stringify(response));
+        })
+         //console.log("kayıt  durumu: "+JSON.stringify(success));     
     }
 
+    useEffect(()=>{
+        if(vendor!=null){
+
+            navigate("/addproduct")
+        }
+
+    },[vendor])
+
+/*
     const addSeller=async()=>{
 
         const url=BASE_URL+"Auth/vendorregister";
@@ -73,6 +88,7 @@ const SellerSignup = () => {
         }
             
     },[seller])
+    */
   return (
     <>
     
