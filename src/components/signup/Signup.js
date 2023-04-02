@@ -1,39 +1,52 @@
 
 
 import moment from 'moment';
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import CustomerContext from '../../context/customerContext';
 import Usepostdata from '../../customHooks/Usepostdata';
+import { createCustomer } from '../../service/UserService';
 import styles from './signup.module.css'
 
 const Signup = () => {
     const BASE_URL="https://localhost:44301/api/";
     const navigate = useNavigate();
     const{register,handleSubmit}=useForm();
-    const [addedcustomer,setcustomer]=useState(null);
     const[data,setData]=useState({url:"",object:{firstname:"",lastname:"",
     email:"",password:"",contact:""}})
 
+    const [setCustomer]=useContext(CustomerContext);
 
-const customer=useSelector(state=>state.customer.customer)
+  
 
 
- const success=Usepostdata(data)
+
+   
+
+
+ 
     
  
  
     const onsubmit=(data)=>{
+       createCustomer(data).then((response)=>{
+         setCustomer(response);
+         
+        console.log("response: "+JSON.stringify(response));
+       });
 
-        console.log("react formdan geldi "+JSON.stringify(data) );
-
-        setcustomer(data);
-        console.log("kayıt  durumu: "+JSON.stringify(success));
-        
+       
+       
+       
        
     }
+    
   
+    /*
+    const customer=useSelector(state=>state.customer.customer)
+    const success=Usepostdata(data)
     const registerCustomer= async ()=>{
 
         const url=BASE_URL+"Auth/customerregister";
@@ -60,7 +73,7 @@ const customer=useSelector(state=>state.customer.customer)
                 'Content-type':'application/json'
             },
             body:JSON.stringify(product)
-        });*/
+        });
 
     },[addedcustomer])
 
@@ -68,7 +81,7 @@ const customer=useSelector(state=>state.customer.customer)
         
         const createChart=Usepostdata({url:"https://localhost:44301/api/cart/add",object:{dateCreated:Date.now(),customerID:`${customer.customerID}`}})
         navigate("/home")
-    }
+    }*/
     
     // fetch customer 
 

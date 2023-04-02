@@ -8,6 +8,7 @@ import { Resizable } from 'react-resizable';
 import { Provider } from 'react-redux';
 import store from './store/index'
 import { AuthContextProvider } from './context/customerauth';
+import CustomerContext, { CustomerContextProvider } from './context/customerContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -17,11 +18,13 @@ root.render(
     
   
 
-  
+  <CustomerContextProvider>
+
+ 
   <BrowserRouter>
       <App />
   </BrowserRouter>
-
+  </CustomerContextProvider>
   
   </Provider>
   </AuthContextProvider>

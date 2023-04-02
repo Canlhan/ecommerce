@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
 
 const CustomeLogin = ({style,activefalse,isactive}) => {
-  const BASE_URL="https://localhost:44301/api/";
+  const BASE_URL="https://localhost:8089/api/v1/customers";
 
   const[formCustomer,setFormCustomer]=useState(null);
   const[isLogin,setLogin]=useState(false);
