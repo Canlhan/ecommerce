@@ -3,40 +3,48 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
-import { loginCustomer } from '../../service/UserService';
+import { getAuthority, loginCustomer } from '../../service/UserService';
 
 const CustomeLogin = ({style,activefalse,isactive}) => {
-  const BASE_URL="https://localhost:8089/api/v1/customers";
-
-  const[formCustomer,setFormCustomer]=useState(null);
+  
   const[isLogin,setLogin]=useState(false);
   const navigate=useNavigate();
+  const[role,setRole]=useState();
  
- 
+  const{register,handleSubmit}=useForm();
 
-  
-
- 
-    const{register,handleSubmit}=useForm();
-
-    const switchtoseller=()=>{
+  const switchtoseller=()=>{
 
         activefalse();
     }
 
-    const onsubmit=(data)=>{
+  const onsubmit=(data)=>{
 
       console.log(data);
-      setFormCustomer(data);
-
-      loginCustomer(data).then((response)=>{
-        console.log("token: "+JSON.stringify(response));
-        localStorage.setItem("token",response)
-        setLogin(true)
-      }).catch(error=>{
-        setLogin(false);
-      });
+      
+      loginnCustomer(data);
+    
+      
    } 
+  const loginnCustomer=(data)=>{
+      
+    loginCustomer(data).then((response)=>{
+      localStorage.setItem("token",response)
+      const authority= getAuthority(response);
+      console.log("roleee: "+authority);
+      setLogin(true)
+      if(authority!="CUSTOMER"){
+          alert("müşteri değilsiniz...")
+          setLogin(false)
+      }
+      
+      
+      
+    }).catch(error=>{
+      setLogin(false);
+    });
+   }
+
 
    useEffect(()=>{
 
