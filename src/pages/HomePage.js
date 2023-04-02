@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useContext } from 'react'
 import BestOfWeek from '../components/homepageother/BestOfWeek'
 import BrandPromotion from '../components/homepageother/BrandPromotion'
 import Chart from '../components/Chart/Chart'
@@ -9,10 +9,12 @@ import Navbar from '../components/navbar/Navbar'
 import ProductInformation from '../components/homepageother/ProductInformation'
 import Sponsors from '../components/homepageother/Sponsors'
 
+
 const HomePage = () => 
 {
 
-  
+
+
   return (
     
     <Fragment>

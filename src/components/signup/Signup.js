@@ -17,9 +17,9 @@ const Signup = () => {
     const[data,setData]=useState({url:"",object:{firstname:"",lastname:"",
     email:"",password:"",contact:""}})
 
-    const [setCustomer]=useContext(CustomerContext);
+    const {customer,setCustomer}=useContext(CustomerContext);
 
-  
+   
 
 
 
@@ -36,12 +36,16 @@ const Signup = () => {
          
         console.log("response: "+JSON.stringify(response));
        });
-
-       
-       
-       
        
     }
+
+    useEffect(()=>{
+        console.log("customerrrr: "+JSON.stringify(customer))
+        if(customer!=null){
+            navigate("/home")
+        }
+        
+    },[customer])
     
   
     /*

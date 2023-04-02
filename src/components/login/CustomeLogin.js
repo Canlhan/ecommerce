@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
+import { loginCustomer } from '../../service/UserService';
 
 const CustomeLogin = ({style,activefalse,isactive}) => {
   const BASE_URL="https://localhost:8089/api/v1/customers";
@@ -15,6 +16,7 @@ const CustomeLogin = ({style,activefalse,isactive}) => {
 
   
 
+ 
     const{register,handleSubmit}=useForm();
 
     const switchtoseller=()=>{
@@ -26,7 +28,23 @@ const CustomeLogin = ({style,activefalse,isactive}) => {
 
       console.log(data);
       setFormCustomer(data);
+
+      loginCustomer(data).then((response)=>{
+        console.log("token: "+JSON.stringify(response));
+        localStorage.setItem("token",response)
+        setLogin(true)
+      }).catch(error=>{
+        setLogin(false);
+      });
    } 
+
+   useEffect(()=>{
+
+    if(isLogin){
+        navigate("/home")
+    }
+   },[isLogin])
+   /*
     const checkRoles=async()=>{
 
       const url=BASE_URL+`Customers/getcustomerbyemail/${formCustomer.email}`
@@ -61,6 +79,7 @@ const CustomeLogin = ({style,activefalse,isactive}) => {
 
   },[formCustomer])
 
+  */
   return (
     <>
     
