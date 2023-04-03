@@ -3,7 +3,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import VendorContext from '../../context/vendorContext';
+import VendorContext from '../../context/vendorContext.tsx';
 import { createVendor } from '../../service/UserService';
 import styles from './signup.module.css'
 

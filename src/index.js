@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import store from './store/index'
 import { AuthContextProvider } from './context/customerauth';
 import CustomerContext, { CustomerContextProvider } from './context/customerContext';
-import { VendorContextProvider } from './context/vendorContext';
+import { VendorContextProvider } from './context/vendorContext.tsx';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -24,9 +24,10 @@ root.render(
  <VendorContextProvider>
 
  
-  <BrowserRouter>
-      <App />
-  </BrowserRouter>
+      <BrowserRouter>
+          <App />
+      </BrowserRouter>
+
   </VendorContextProvider>
   </CustomerContextProvider>
   

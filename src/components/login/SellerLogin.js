@@ -2,16 +2,18 @@
 
 
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { getAuthority, loginUser } from '../../service/UserService';
+import VendorContext from '../../context/vendorContext';
 
 const SellerLogin = ({style,activetrue}) => {
 
     const[isLogin,setLogin]=useState(false);
     const navigate=useNavigate();
     
+    const{setVendor}=useContext(VendorContext);
     const{register,handleSubmit}=useForm();
 
     const switchtocustomer=()=>{
@@ -35,13 +37,19 @@ const SellerLogin = ({style,activetrue}) => {
               setLogin(false);
               localStorage.removeItem("role");
             }
-            navigate("/addproduct")
+            
           })
           .catch((error) => {
             setLogin(false);
           });
       };
 
+      useEffect(()=>{
+
+        if(isLogin){
+            navigate("/addproduct")
+        }
+      },[isLogin])
       
     /*
     // check roleeeeeeeeeeeeeeeeee
