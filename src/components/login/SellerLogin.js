@@ -7,6 +7,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { getAuthority, loginUser } from '../../service/UserService';
 import VendorContext from '../../context/vendorContext';
+import { getVendorByEmail } from '../../service/VendorService';
 
 const SellerLogin = ({style,activetrue}) => {
 
@@ -31,19 +32,34 @@ const SellerLogin = ({style,activetrue}) => {
             const authority = getAuthority(response);
             setLogin(true);
             localStorage.setItem("role", authority);
-      
-            if (authority !== "VENDOR") {
-              alert("satıcı değilsiniz...");
-              setLogin(false);
-              localStorage.removeItem("role");
-            }
+           
             
-          })
-          .catch((error) => {
-            setLogin(false);
-          });
+            if (authority !== "ROLE_VENDOR") {
+                alert("satıcı değilsiniz...");
+                setLogin(false);
+                localStorage.removeItem("role");
+                localStorage.removeItem("token");
+            }
+            getVendorByEmail(data.email)
+                    .then((vendorResponse) => {
+                        const vendor = vendorResponse;
+                        setVendor(vendor);
+                    })
+                    .catch((error) => {
+                        console.log("Error fetching vendor information: " + error);
+                        setLogin(false);
+                    });
+                
+                })
+                .catch((error) => {
+                    setLogin(false);
+                    console.log(error)
+                    alert("satıcı değilsiniz 1 "+error);
+                });
       };
 
+
+    
       useEffect(()=>{
 
         if(isLogin){

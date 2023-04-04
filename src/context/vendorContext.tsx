@@ -13,8 +13,7 @@ const defaultVendorContextState: VendorContextState = {
     name: "",
     adress:"",
     contact:"",
-    email:"",
-    password:""
+    email:""  
   },
   setVendor:()=>{}
 };
@@ -24,6 +23,7 @@ const VendorContext = createContext(defaultVendorContextState);
 export const VendorContextProvider = (props) => {
   const [vendor, setVendor] = useState(defaultVendorContextState.vendor);
 
+  console.log("vendor değişti: "+JSON.stringify(vendor));
   return (
     <VendorContext.Provider value={{ vendor, setVendor }}>
       {props.children}

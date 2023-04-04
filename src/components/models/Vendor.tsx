@@ -5,6 +5,5 @@ export interface Vendor{
     name:string;
     adress:string;
     email:string;
-    password:string;
     contact:string;
 }

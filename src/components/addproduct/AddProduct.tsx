@@ -5,6 +5,7 @@ import VendorContext from '../../context/vendorContext';
 import Usefetchdata from '../../customHooks/Usefetchdata';
 import Usepostdata from '../../customHooks/Usepostdata';
 import { getAllCategories } from '../../service/categoryService/CategoryService';
+import { saveVendorProduct } from '../../service/productService/VendorProductService';
 
 import { Category } from '../models/Category';
 import { Product } from '../models/Product';
@@ -13,12 +14,18 @@ import { VendorProduct } from '../models/VendorProduct';
 
 const AddProduct = ({style}) => 
 {   
-    const BASE_URL="https://localhost:44301/api/";
-    const formdata:FormData=new FormData();
+    useEffect(()=>{
+        getAllCategories().then((response)=>{
+
+            setCategories(response);
+            console.log(JSON.stringify(response));
+        });
+    },[])
+
 
     
-    
-  
+    const formdata:FormData=new FormData();
+
    const[product,setProduct]=useState<Product>();
     const[addeedProdcut,setAddedProduct]=useState<Product>();
     const[categories,setCategories]=useState<Category[]>([]);
@@ -32,18 +39,13 @@ const AddProduct = ({style}) =>
     
 
     const {vendor}=useContext(VendorContext);
+    console.log("add product vendor: "+JSON.stringify(vendor));
     const backref = useRef<HTMLDivElement>(null);
     const[photo,setphoto]=useState<string>("");
-    const[photoadded,setAddPhoto]=useState<FormData>();
+    
    
 
-    useEffect(()=>{
-        getAllCategories().then((response)=>{
-
-            setCategories(response);
-            console.log(JSON.stringify(response));
-        });
-    },[])
+   
     
     const onsubmit=(data)=>{
        console.log("product eklenen "+JSON.stringify({...data,productPhoto:null}))
@@ -67,8 +69,12 @@ const AddProduct = ({style}) =>
           vendor:vendor
           
       }
+    
+      saveVendorProduct(vendorProduct).then((response)=>{
+          console.log("vendor prodc: "+response)
+      });
 
-      console.log("vendor prodo: "+JSON.stringify(vendorProduct));
+    
     }
 
     const fileinput=(e)=>{
@@ -86,9 +92,9 @@ const AddProduct = ({style}) =>
 
     const addProduct =async()=>{
 
-        const url=BASE_URL+"Products/add";
+       
         
-        const response = await fetch(url,{
+        const response = await fetch("",{
             method:"POST",
             headers:{
                 'Content-type':'application/json'
@@ -125,10 +131,10 @@ const AddProduct = ({style}) =>
 
 */
     const addImage=async(image)=>{
-        const url=BASE_URL+"Image/add";
+        
         
         console.log(image)
-        const response = await fetch(url,{
+        const response = await fetch("",{
             method: "POST",
             headers:{
                 'Accept': '*/*',
