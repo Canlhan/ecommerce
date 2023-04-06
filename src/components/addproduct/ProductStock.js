@@ -5,37 +5,37 @@
 
 
 import React, { useEffect, useState } from 'react'
+import { getVendorByEmail } from '../../service/VendorService'
 import VendorProductUpdate from './feedbacks/VendorProductUpdate'
 import VendorProduct from './orderitems/VendorProduct'
 
 import style from './ProductStock.module.css'
 const ProductStock = () => {
 
-const BASE_URL="https://localhost:44301/api/";
+
 const [isUpdate,setUpdate]=useState(false);
 const[getvendorProducts,setVendorProducts]=useState([]);
 const vendorId=localStorage.getItem("sellerId");
 const[isYes,setYes]=useState(false);
 
 
-const vendorProducts=async()=>{
     
-    const url=BASE_URL+`VendorProducts/getallbyvendorid/${vendorId}`
-    const result=await fetch(url);
-    const resultjson= await result.json();
-    
+    const getVendorProducts=()=>{
 
-    if(resultjson!==undefined){
-        setVendorProducts(resultjson.data);
-        console.log(resultjson)
+        getVendorByEmail().then((response)=>{
+
+           const{vendorProducts,...vendor}=response;
+           console.log(vendorProducts[0])
+           console.log(response)
+            
+        })
     }
 
-}
 
-useEffect(()=>{
-            console.log("sdfsdfsdfsdffd")
-            vendorProducts();
-},[])
+    useEffect(()=>{
+
+        getVendorProducts();
+    },[])
 
 const getVendorProductId=()=>{
 

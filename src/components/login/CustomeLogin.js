@@ -34,7 +34,7 @@ const CustomeLogin = ({style,activefalse,isactive}) => {
       setLogin(true)
       localStorage.setItem("role",authority);
 
-      if(authority!="CUSTOMER"){
+      if(authority!="ROLE_CUSTOMER"){
           alert("müşteri değilsiniz...")
           setLogin(false)
           localStorage.removeItem("role");

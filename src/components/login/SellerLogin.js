@@ -7,7 +7,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { getAuthority, loginUser } from '../../service/UserService';
 import VendorContext from '../../context/vendorContext';
-import { getVendorByEmail } from '../../service/VendorService';
+import { getVendorByEmailWithoutProducts } from '../../service/VendorService';
 
 const SellerLogin = ({style,activetrue}) => {
 
@@ -40,7 +40,7 @@ const SellerLogin = ({style,activetrue}) => {
                 localStorage.removeItem("role");
                 localStorage.removeItem("token");
             }
-            getVendorByEmail(data.email)
+            getVendorByEmailWithoutProducts()
                     .then((vendorResponse) => {
                         const vendor = vendorResponse;
                         setVendor(vendor);

@@ -2,14 +2,12 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useSelector } from 'react-redux';
 import VendorContext from '../../context/vendorContext';
-import Usefetchdata from '../../customHooks/Usefetchdata';
-import Usepostdata from '../../customHooks/Usepostdata';
 import { getAllCategories } from '../../service/categoryService/CategoryService';
-import { saveVendorProduct } from '../../service/productService/VendorProductService';
+import { saveVendorProduct } from '../../service/vendorProductService/VendorProductService';
+
 
 import { Category } from '../models/Category';
 import { Product } from '../models/Product';
-import { Vendor } from '../models/Vendor';
 import { VendorProduct } from '../models/VendorProduct';
 
 const AddProduct = ({style}) => 
@@ -39,7 +37,7 @@ const AddProduct = ({style}) =>
     
 
     const {vendor}=useContext(VendorContext);
-    console.log("add product vendor: "+JSON.stringify(vendor));
+   
     const backref = useRef<HTMLDivElement>(null);
     const[photo,setphoto]=useState<string>("");
     
@@ -48,7 +46,7 @@ const AddProduct = ({style}) =>
    
     
     const onsubmit=(data)=>{
-       console.log("product eklenen "+JSON.stringify({...data,productPhoto:null}))
+       
        const category:Category[]=categories.filter((categorys)=>categorys.id==data.id);
        const product:Product={
             category:category[0],
@@ -59,21 +57,25 @@ const AddProduct = ({style}) =>
             unitPrice:data.price,
                 
        }
+       
       // const vendorProduct:VendorProduct={...data,productPhoto:null,vendor:vendor};
       const vendorProduct:VendorProduct={
           description:data.description,
           price:data.price,
           product:product,
-          quantity:1,
-          state:true,
+          quantity:1,        
           vendor:vendor
           
       }
-    
-      saveVendorProduct(vendorProduct).then((response)=>{
-          console.log("vendor prodc: "+response)
-      });
+      
+      console.log("vendor product: "+JSON.stringify(vendorProduct))
+    const token=localStorage.getItem("token");
+      
+      
 
+      saveVendorProduct(vendorProduct,token).then((response)=>{
+          console.log("saved vendor"+response)
+      })
     
     }
 

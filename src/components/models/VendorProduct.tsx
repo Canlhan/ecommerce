@@ -4,7 +4,7 @@ import { Vendor } from "./Vendor";
 
 export interface VendorProduct{
     
-    state:boolean;
+
     price:number;
     quantity:number;
     description:string;
