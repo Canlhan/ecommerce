@@ -21,12 +21,13 @@ export async function  saveVendorProduct(data:any,token:any){
 export async function getVendorProductsByVendorId(vendorId:number){
 
 const token=localStorage.getItem("token");
+  console.log(token)
   const headers = {
     Authorization: `Bearer ${token}`
    
   }
 
-  const response= await axios.get("http://localhost:8089/api/v1/vendorproducts/",{headers});
+  const response= await axios.get(`http://localhost:8089/api/v1/vendorproducts/${vendorId}`,{headers});
 
   console.log("vendorProducts by vendorId: "+JSON.stringify(response))
 

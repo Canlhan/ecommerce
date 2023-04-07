@@ -29,10 +29,7 @@ const SellerSignup = () => {
     }
 
     useEffect(()=>{
-        if(vendor!=null){
-
-            navigate("/addproduct")
-        }
+       
 
     },[vendor])
 
