@@ -4,19 +4,34 @@ import {  useParams } from 'react-router-dom'
 import Usefetchdata from '../../../customHooks/Usefetchdata';
 import { chartActions } from '../../../store/chart-slice';
 import Navbar from '../../navbar/Navbar';
-import CategoryCard from './CategoryCard';
+
 import style from './CategoryCard.module.css'
+import { getVendorProductsByCategoryId } from '../../../service/vendorProductService/VendorProductService';
+import CategoryProductCard from './CategoryProductCard';
 
 
 
 const CategoryDetail = () => {
 
-  
+    const[vendorProducts,setVendorProducts]=useState([])
     const params=useParams()
-    const products=Usefetchdata(`https://localhost:44301/api/vendorProducts/getallbycategoryid/${params.categoryId}`);
-    console.log("category detail "+products.map((item)=>console.log("productName: "+item.productName)))
+
+    const getVendorProductsWithCategoryId=(categoryId)=>{
+
+      getVendorProductsByCategoryId(categoryId).then((response)=>{
+        setVendorProducts(response);
+
+      });
+    }
+    useEffect(()=>{
+
+      getVendorProductsWithCategoryId(params.categoryId);
+    },[])
+
+    //const products=Usefetchdata(`https://localhost:44301/api/vendorProducts/getallbycategoryid/${params.categoryId}`);
+    //console.log("category detail "+products.map((item)=>console.log("productName: "+item.productName)))
     
-    console.log("category detaildeki ürünler "+products);
+    console.log("category detaildeki ürünler "+vendorProducts);
 
   
     
@@ -33,10 +48,10 @@ const CategoryDetail = () => {
         <div className={style.container}>
           
                 {
-                    products.map((item,index)=>
+                    vendorProducts.map((item,index)=>
                     (<div key={index} > 
 
-                          <CategoryCard  item={item}/>
+                          <CategoryProductCard  item={item}/>
                      
                      </div>))
                 }

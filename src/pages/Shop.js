@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Navbar from '../components/navbar/Navbar'
 import Card from '../components/Shop/Card'
 import Usefetchdata from '../customHooks/Usefetchdata'
+import { getAllCategories } from '../service/categoryService/CategoryService'
 import { categoryActions } from '../store/category-slice'
 import style from './Shop.module.css'
 
@@ -13,10 +14,25 @@ const list=[{id:'1',categoryName:"bel"}
 ]
 const Shop = () => {
 
-  const categories=Usefetchdata("https://localhost:44301/api/category/getall");
+  const[categories,setCategories]=useState([]);
+  //const categories=Usefetchdata("https://localhost:44301/api/category/getall");
+
+  const getCategories=()=>{
+
+    getAllCategories().then((response)=>{
+      setCategories(response);
+    })
+  }
+
+  useEffect(()=>{
+
+      getCategories();
+  },[])
   const dispatch=useDispatch();
   dispatch(categoryActions.setCategories(categories))
   console.log("categories: "+categories)
+
+  
   return (
     <Fragment>
         <Navbar/>

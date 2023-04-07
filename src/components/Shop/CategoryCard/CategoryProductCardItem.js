@@ -8,12 +8,12 @@ import Shoesize from './Shoesize'
 const CategoryProductCardItem = ({styles,product}) => {
     
     const dispatch=useDispatch();
-    const [addProduct,setAddProduct]=useState(false);
-    
+
     const[data,setData]=useState({url:"",object:{firstname:"",lastname:"",
 email:"",password:"",contact:""}});
     
    
+console.log("vendorProuctsss: "+JSON.stringify(product))
     const [onHover,setHover]=useState(false)
     const image=useRef()
 
@@ -45,7 +45,7 @@ email:"",password:"",contact:""}});
 
     <Fragment>
         
-            <div key={product.productID} className={styles.card}  onMouseEnter={handlerHover} onMouseLeave={handlerleave}>
+            <div key={product.id} className={styles.card}  onMouseEnter={handlerHover} onMouseLeave={handlerleave}>
                 <div className={styles.card_information}>
                     <div className={styles.discount_tag}>_30%</div>
                     
@@ -72,7 +72,8 @@ email:"",password:"",contact:""}});
                 </div>
                 <div className={styles.shoes_information}>
                     <div className={`${styles.shoes_information_item} ${styles.productName}`}>
-                        <h2 className={styles.shoesName}>{product.productName}</h2>
+                        <h2 className={styles.shoesName}>{product.product.productName}</h2>
+
                         <div className={styles.shoesPrice}>
                             <div className={styles.shoesNewPrice}>€{product.price}</div> <br/>
                             <div className={styles.shoesDelPrice}><del>€{product.price}</del></div>

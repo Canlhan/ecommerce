@@ -5,7 +5,7 @@ import CategoryProductCardItem from './CategoryProductCardItem'
 
 const shozesize=[{value:"36"},{value:"37"},{value:"38"},{value:"39"},{value:"40"},{value:"40"},{value:"40"}]
 
-const CategoryCard = (props) => {
+const CategoryProductCard = (props) => {
 
     console.log(props.item);
     
@@ -20,4 +20,4 @@ const CategoryCard = (props) => {
   )
 }
 
-export default CategoryCard
+export default CategoryProductCard

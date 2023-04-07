@@ -14,7 +14,7 @@ const Card = (props) => {
      
         {props.categoryList.map((item)=>
 
-           <Link to={`/shop/${item.categoryID}`} key={item.categoryID}>
+           <Link to={`/shop/${item.id}`} key={item.categoryID}>
 
             <CardItem  style={style} item={item}/>
 

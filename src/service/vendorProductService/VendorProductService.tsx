@@ -36,3 +36,21 @@ const token=localStorage.getItem("token");
 
 }
 
+export async function getVendorProductsByCategoryId(categoryId:number) {
+  
+
+  const token=localStorage.getItem("token");
+  console.log(token)
+  const headers = {
+    Authorization: `Bearer ${token}`
+   
+  }
+
+  const response= await axios.get(`http://localhost:8089/api/v1/vendorproducts/category/${categoryId}`,{headers});
+
+  console.log("vendorProducts by vendorId: "+JSON.stringify(response))
+
+  return response.data;
+
+}
+
