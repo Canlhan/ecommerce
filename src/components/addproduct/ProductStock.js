@@ -4,7 +4,9 @@
 
 
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import VendorContext from '../../context/vendorContext'
+import { getVendorProductsByVendorId } from '../../service/vendorProductService/VendorProductService'
 import { getVendorByEmail } from '../../service/VendorService'
 import VendorProductUpdate from './feedbacks/VendorProductUpdate'
 import VendorProduct from './orderitems/VendorProduct'
@@ -13,19 +15,21 @@ import style from './ProductStock.module.css'
 const ProductStock = () => {
 
 
-const [isUpdate,setUpdate]=useState(false);
-const[getvendorProducts,setVendorProducts]=useState([]);
-const vendorId=localStorage.getItem("sellerId");
-const[isYes,setYes]=useState(false);
+    const [isUpdate,setUpdate]=useState(false);
+    const[getvendorProducts,setVendorProducts]=useState([]);
+    const vendorId=localStorage.getItem("sellerId");
+    const[isYes,setYes]=useState(false);
 
-
+    const {vendor}=useContext(VendorContext);
     
     const getVendorProducts=()=>{
 
-        getVendorByEmail().then((response)=>{
+        getVendorProductsByVendorId(vendor.id).then((response)=>{
 
-           const{vendorProducts,...vendor}=response;
-           console.log(vendorProducts[0])
+           
+          
+           setVendorProducts(response)
+           
            console.log(response)
             
         })
@@ -74,7 +78,8 @@ const getVendorProductId=()=>{
                         
                          getvendorProducts.map((vendorProduct)=>{
 
-                            return  <VendorProduct yes={isYes} key={vendorProduct.VendorProductID} vendorProduct={vendorProduct}  updated={changeUpdateTrue} style={style}/> 
+                            
+                            return  <VendorProduct yes={isYes} key={vendorProduct.id} vendorProduct={vendorProduct}  updated={changeUpdateTrue} style={style}/> 
                          })
                          
                      }
