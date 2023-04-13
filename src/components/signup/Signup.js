@@ -7,34 +7,26 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import CustomerContext from '../../context/customerContext';
 import Usepostdata from '../../customHooks/Usepostdata';
+import { createCart } from '../../service/cartService/chartService';
 import { createCustomer} from '../../service/UserService';
 import styles from './signup.module.css'
 
 const Signup = () => {
-    const BASE_URL="https://localhost:44301/api/";
+    
     const navigate = useNavigate();
     const{register,handleSubmit}=useForm();
-    const[data,setData]=useState({url:"",object:{firstname:"",lastname:"",
-    email:"",password:"",contact:""}})
+   
 
     const {customer,setCustomer}=useContext(CustomerContext);
 
-   
-
-
-
-   
-
-
- 
-    
- 
+    const[customecart,setCartCustomer]=useState(null);
  
     const onsubmit=(data)=>{
         createCustomer(data).then((response)=>{
          setCustomer(response);
+         setCartCustomer(data);
          
-        console.log("response: "+JSON.stringify(response));
+        console.log("response: "+JSON.stringify(data));
        });
        
     }
@@ -42,6 +34,11 @@ const Signup = () => {
     useEffect(()=>{
         console.log("customerrrr: "+JSON.stringify(customer))
         if(customer!=null){
+            const {token,...customersplit}=customer;
+            const cust={...customersplit,email:customecart.email}
+            console.log("resssss: "+JSON.stringify(customer));
+            console.log("resssss: "+JSON.stringify(customersplit));
+            createCart(cust);
             navigate("/home")
         }
         

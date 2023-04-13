@@ -10,6 +10,7 @@ import store from './store/index'
 import { AuthContextProvider } from './context/customerauth';
 import CustomerContext, { CustomerContextProvider } from './context/customerContext';
 import { VendorContextProvider } from './context/vendorContext.tsx';
+import { ChartProductsContextProvider } from './context/ChartProductContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -23,10 +24,13 @@ root.render(
 
  <VendorContextProvider>
 
- 
+      <ChartProductsContextProvider>
+
+      
       <BrowserRouter>
           <App />
       </BrowserRouter>
+      </ChartProductsContextProvider>
 
   </VendorContextProvider>
   </CustomerContextProvider>

@@ -1,27 +1,27 @@
-import React, { Fragment, useEffect, useRef, useState } from 'react'
+import React, { Fragment, useContext, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ChartProductsContext from '../../../context/ChartProductContext';
 import Usepostdata from '../../../customHooks/Usepostdata';
+import { addChartProduct } from '../../../service/cartService/chartService';
 import { chartActions } from '../../../store/chart-slice';
 import Shoesize from './Shoesize'
 
 const CategoryProductCardItem = ({styles,product}) => {
     
-    const dispatch=useDispatch();
+  
+    const{addToCart,trigger}=useContext(ChartProductsContext);
 
-    const[data,setData]=useState({url:"",object:{firstname:"",lastname:"",
-email:"",password:"",contact:""}});
+   
     
    
-console.log("vendorProuctsss: "+JSON.stringify(product))
+   
     const [onHover,setHover]=useState(false)
     const image=useRef()
 
-    useEffect(()=>{
-        setData({url:"",object:{}})
-    },[])
+   
     
-    console.log("Category  product cart item içindeki product: "+JSON.stringify(product))
+   
     const handlerHover=(e)=>{
         
         
@@ -34,11 +34,12 @@ console.log("vendorProuctsss: "+JSON.stringify(product))
 
     const handleAddProduct=()=>{
         console.log("basıldı")
-        setData(product);
+        
+        console.log("seepte eklenecek productS: "+JSON.stringify(product))
+        
+        addChartProduct(product)
 
-        console.log(product);
-        dispatch(chartActions.setTrueChart())
-        dispatch(chartActions.addProduct({...product,quantity:1}))
+     
     }
     
   return (
