@@ -11,9 +11,10 @@ const CategoryProductCardItem = ({styles,product}) => {
     
   
     const{addToCart,trigger}=useContext(ChartProductsContext);
-
+    const dispatch=useDispatch();
+    const isOpenChart=useSelector(state=>state.chart.isOpenChart);
    
-    
+     
    
    
     const [onHover,setHover]=useState(false)
@@ -36,8 +37,8 @@ const CategoryProductCardItem = ({styles,product}) => {
         console.log("basıldı")
         
         console.log("seepte eklenecek productS: "+JSON.stringify(product))
+        dispatch(chartActions.addProduct(product));
         
-        addChartProduct(product)
 
      
     }

@@ -13,7 +13,7 @@ const chartSlice=createSlice(
             addProduct(state,action){
                 
                
-                const existingProduct=state.products.find(({ productID }) => productID ===action.payload.productID);
+                const existingProduct=state.products.find(({ id }) => id ===action.payload.id);
                 console.log(" slicedeaki varolan obje: "+existingProduct)
                 if(existingProduct===undefined)
                 {
@@ -25,7 +25,7 @@ const chartSlice=createSlice(
             },
             deleteProduct(state,action){
                 state.products=state.products.filter((item)=>
-                    item.productID!==action.payload
+                    item.id!==action.payload
                 )
             },
             toggleChart(state){
@@ -38,7 +38,7 @@ const chartSlice=createSlice(
                 state.isOpenChart=false;
             },
             IncreaseQuantity(state,action){
-                const existingProduct=state.products.find(({ productID }) => productID ===action.payload);
+                const existingProduct=state.products.find(({ id }) => id ===action.payload);
                 if(existingProduct.quantity!==1){
                     existingProduct.quantity-=1;
                 }
@@ -46,7 +46,7 @@ const chartSlice=createSlice(
                 
             },
             DecreaseQuantity(state,action){
-                const existingProduct=state.products.find(({ productID }) => productID ===action.payload);
+                const existingProduct=state.products.find(({ id }) => id ===action.payload);
                 if(existingProduct.quantity<10){
                     existingProduct.quantity+=1;
                 }

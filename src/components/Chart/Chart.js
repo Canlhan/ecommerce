@@ -11,12 +11,13 @@ const Chart = () => {
     const dispatch=useDispatch();
     const isOpenChart=useSelector(state=>state.chart.isOpenChart);
    
-  const[products,setProducts]=useState([]);
+ 
     const{chartProducts,isTrigger}=useContext(ChartProductsContext);
 
-    const totalPrice=useSelector(state=>state.chart.sumPrice);
-   
-    let totalprice=0;
+    //const totalPrice=useSelector(state=>state.chart.sumPrice);
+   const products=useSelector(state=>state.chart.products);
+   console.log("p: "+JSON.stringify(products));
+    const[totalPrice,setTotalPrice]=useState(0);
 
     let chartClosed=""
     if(!isOpenChart){
@@ -54,10 +55,12 @@ const Chart = () => {
     */
     useEffect(()=>{
 
-      setProducts(...chartProducts);
-      console.log("ssss")
+     // setProducts(...chartProducts);
+     const totalPrice = products.reduce((sum, product) => sum + product.price*product.quantity, 0);
+     console.log("tot: "+totalPrice);
+    setTotalPrice(totalPrice);
 
-    },[isTrigger])
+    },[products])
 
 
   return (
@@ -68,14 +71,14 @@ const Chart = () => {
 
        {
        
-       chartProducts.length===0 ? 
+       products.length===0 ? 
            
            <div class={style.warning_message}>SEPETİNİZDE ÜRÜN BULUNMAMAKTADIR</div> 
            
              :
-             chartProducts.map((product)=> <li key={product.productID} class={style.shopping_cart_product}>
+             products.map((product)=> <li key={product.id} class={style.shopping_cart_product}>
             
-             <ChartCardItem properties={product} /> </li>)
+             <ChartCardItem product={product} /> </li>)
            
            
          
