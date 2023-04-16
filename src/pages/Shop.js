@@ -1,7 +1,8 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import Navbar from '../components/navbar/Navbar'
 import Card from '../components/Shop/Card'
+import CustomerContext from '../context/customerContext'
 import Usefetchdata from '../customHooks/Usefetchdata'
 import { getAllCategories } from '../service/categoryService/CategoryService'
 import { categoryActions } from '../store/category-slice'
@@ -17,6 +18,8 @@ const Shop = () => {
   const[categories,setCategories]=useState([]);
   //const categories=Usefetchdata("https://localhost:44301/api/category/getall");
 
+  const customer=useContext(CustomerContext);
+  console.log("customer in shop: "+JSON.stringify(customer));
   const getCategories=()=>{
 
     getAllCategories().then((response)=>{

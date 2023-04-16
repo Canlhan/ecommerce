@@ -21,6 +21,7 @@ const chartSlice=createSlice(
                    state.products=[...state.products,action.payload];
                     
                 }
+                console.log("add products")
                 
             },
             deleteProduct(state,action){

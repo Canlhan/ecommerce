@@ -5,14 +5,22 @@ import Navbar from '../components/navbar/Navbar'
 import '../components/Chart/chart.module.css'
 import style from  './confirmChart.module.css'
 import Footer from '../components/homepageother/Footer'
+import { useLocation } from 'react-router-dom'
+import { getCustomerByEmail } from '../service/customerService/CustomerService'
+import { createCart } from '../service/cartService/chartService'
 
 const ConfirmChart = (props) => {
+    
+
     const products=useSelector((state)=>state.chart.products);
     const totalPrice=useSelector((state)=>state.chart.sumPrice);
-    const[isCreate,setOrder]=useState(false);
+  
+    const email=localStorage.getItem("customerEmail");
+    const[totalPriceConfirm,setTotalPrice]=useState(totalPrice);
 
-    const[isfinishOrder,setFinishOrder]=useState(false);
-    const BASE_URL="https://localhost:44301/api/";
+   
+  
+    const[cust,setCust]=useState({});
     const customerId=localStorage.getItem("customerId");
 
     const[Orders,setOrders]=useState(null);
@@ -22,10 +30,25 @@ const ConfirmChart = (props) => {
 
     const createOrders=()=>{
         console.log("sepete onaylaya basıldı")
-        setOrder(true);
+        createCart(cust,)
+      
     }
 
+    useEffect(()=>{
+        getCustomerByEmail(email).then((response)=>{
+          console.log("char email customer: "+JSON.stringify(response));
+          setCust(response);
+        });
+      },[])
 
+    useEffect(()=>{
+
+        const totalPrice = products.reduce((sum, product) => sum + product.price*product.quantity, 0);
+        setTotalPrice(totalPrice);
+
+    },[products])
+
+    /*
     const postOrder = async()=>{
 
         console.log(addedOrder);
@@ -81,7 +104,7 @@ const ConfirmChart = (props) => {
         }
     },[isfinishOrder])
 
-  
+    */
 
   return (
     <Fragment>
@@ -96,7 +119,7 @@ const ConfirmChart = (props) => {
                   products.map((product,index)=> {
                    
                    return <li key={index} class={style.shopping_cart_product}>
-                      <ChartCardItem  properties={{productId:product.productId,productName:product.productName,price:product.price,quantity:product.quantity}}/> </li>})
+                      <ChartCardItem  product={product}/> </li>})
                 }
                
             </div>
@@ -108,7 +131,7 @@ const ConfirmChart = (props) => {
                 <h2>Sipariş Özeti</h2>
                 <div class={style.total_order_price}>
                     <span>Ürünlerin Toplamı</span>
-                    <span>{totalPrice} TL</span>
+                    <span>{totalPriceConfirm} TL</span>
                 </div>
             </div>
         </div>

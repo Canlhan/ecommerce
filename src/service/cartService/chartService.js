@@ -24,7 +24,7 @@ export async function addChartProduct(cartProduct,cartId){
     return response.data;
 }
 
-export async function createCart(customer)
+export async function createCart(customer,products)
 {
     const token=localStorage.getItem("token");
   console.log(token)
@@ -34,6 +34,7 @@ export async function createCart(customer)
   }
 
   console.log("customerchart: "+JSON.stringify(customer));
+  console.log("customer id: "+customer.id);
     const cart={cartProducts:[]};
     const response=await axios.post(`http://localhost:8089/api/v1/carts/add?customerId=${customer.id}`,cart,{headers});
 

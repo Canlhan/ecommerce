@@ -5,9 +5,10 @@ import style from './chart.module.css'
 const ChartCardItem = ({product,setVendor}) => {
   
   
-  console.log("chart CART İTEMMMM: "+JSON.stringify(product));
+  
     const dispatch=useDispatch();
   
+    
     
 
     const handleDeleteProduct=()=>{
@@ -42,7 +43,7 @@ const ChartCardItem = ({product,setVendor}) => {
   return (
 
     <Fragment>
-        <div key={product.productId} className="shopping_cart_product_picture"></div>
+        <div key={product.id} className="shopping_cart_product_picture"></div>
                 <p className={style.shopping_cart_product_name}>{product.product.productName}</p>
                 <div className={style.shopping_cart_product_quantity_setting}>
                     <input onClick={handleIncreaseQuantity} className={style.increase} type="button" value="-"/>
@@ -63,4 +64,4 @@ const ChartCardItem = ({product,setVendor}) => {
   )
 }
 
-export default ChartCardItem
+export default ChartCardItem;

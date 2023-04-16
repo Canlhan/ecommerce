@@ -33,6 +33,7 @@ const Signup = () => {
 
     useEffect(()=>{
         console.log("customerrrr: "+JSON.stringify(customer))
+        /*
         if(customer!=null){
             const {token,...customersplit}=customer;
             const cust={...customersplit,email:customecart.email}
@@ -41,7 +42,7 @@ const Signup = () => {
             createCart(cust);
             navigate("/home")
         }
-        
+        */
     },[customer])
     
   

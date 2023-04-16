@@ -1,16 +1,19 @@
 
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
-import { createCart } from '../../service/cartService/chartService';
+import CustomerContext from '../../context/customerContext';
+
+import { getCustomerByEmail } from '../../service/customerService/CustomerService';
 import { getAuthority, loginUser } from '../../service/UserService';
 
 const CustomeLogin = ({style,activefalse,isactive}) => {
   
   const[isLogin,setLogin]=useState(false);
+  const{setCustomer}=useContext(CustomerContext);
+  const[customerEmail,setCustomerEmail]=useState();
   const navigate=useNavigate();
-  const[role,setRole]=useState();
  
   const{register,handleSubmit}=useForm();
 
@@ -24,7 +27,7 @@ const CustomeLogin = ({style,activefalse,isactive}) => {
       console.log(data);
       
       loginnCustomer(data);
-    
+      setCustomerEmail(data.email);
       
    } 
   const loginnCustomer=(data)=>{
@@ -34,7 +37,7 @@ const CustomeLogin = ({style,activefalse,isactive}) => {
       const authority= getAuthority(response);
       setLogin(true)
       localStorage.setItem("role",authority);
-
+      localStorage.setItem("customerEmail",data.email);
       if(authority!="ROLE_CUSTOMER"){
           alert("müşteri değilsiniz...")
           setLogin(false)
@@ -49,10 +52,17 @@ const CustomeLogin = ({style,activefalse,isactive}) => {
     });
    }
 
+      
+
 
    useEffect(()=>{
 
     if(isLogin){
+      getCustomerByEmail(customerEmail).then((response)=>{
+        setCustomer(response);
+      
+        
+      })
         navigate("/home")
     }
    },[isLogin])

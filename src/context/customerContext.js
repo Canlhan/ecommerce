@@ -13,7 +13,7 @@ export const CustomerContextProvider=(props)=>{
 
     const[customer,setCustomer]=useState();
 
-   
+    console.log("customer changed: "+JSON.stringify(customer));
    
 
     return <CustomerContext.Provider value={{customer,setCustomer}}>
