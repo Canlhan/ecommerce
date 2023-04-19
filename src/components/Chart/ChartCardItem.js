@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { chartActions } from '../../store/chart-slice';
 import style from './chart.module.css'
-const ChartCardItem = ({product,setVendor}) => {
+const ChartCardItem = ({product}) => {
   
   
   
