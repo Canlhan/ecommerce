@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import ChartCardItem from '../components/Chart/ChartCardItem'
 import Navbar from '../components/navbar/Navbar'
@@ -12,6 +12,10 @@ import { createCart } from '../service/cartService/chartService'
 import { saveChartProducts } from '../service/cartProductservice/CartProductService'
 import { VendorProduct } from '../components/models/VendorProduct'
 import { CartProductRequest } from '../components/models/CartProductRequest'
+import { OrderProductRequest } from '../components/models/OrderProductRequest'
+import { Order } from '../components/models/Order'
+import { saveOrder } from '../service/order/OrderService'
+import CustomerContext from '../context/customerContext'
 
 
 const ConfirmChart = (props) => {
@@ -27,21 +31,69 @@ const ConfirmChart = (props) => {
     const email=localStorage.getItem("customerEmail");
     const[totalPriceConfirm,setTotalPrice]=useState(totalPrice);
 
+    const {customer}=useContext(CustomerContext);
    
   
     const[cust,setCust]=useState({});
     const customerId=localStorage.getItem("customerId");
 
-    const[Orders,setOrders]=useState(null);
+    const[orderProducts,setOrderProducts]=useState<OrderProductRequest[]>([]);
+    const[vendorIds,setVendorIds]=useState<number[]>([]);
+    const[isPressConfirm,setConfirm]=useState(false);
+   
     
-    console.log(customerId);
+    console.log(customer.id);
     const[addedOrder,setAddedOrder]=useState({customerId:16});
 
     const createOrders=()=>{
         console.log("sepete onaylaya basıldı")
         
+        products.map(product=>{
+            const orderProduct:OrderProductRequest=
+            {
+                quantity:product.quantity,
+                vendorProductId:product.id
+            };
+            setVendorIds((prev)=>[...prev,product.vendor.id]);
+            setOrderProducts((prev)=>[...prev, orderProduct]);
+
+            console.log("product in CONFİRM CART: "+JSON.stringify(product));
+            console.log("orderProduct in CONFİRM CART: "+JSON.stringify(orderProduct));
+
+        })
+        setConfirm(true);
+       
+        // order kaydı yapılmalı içindeki productlar orderproduct nesnesine dönüştürülmeli 
+        // ve bir liste halinde order'a eklenmeli
+
       
     }
+    
+    useEffect(()=>{
+
+        if(isPressConfirm){
+            if(customer!=null){
+                console.log("girdi")
+                
+                const order:Order={
+                    customerId:customer.id,
+                    orderProducts:orderProducts,
+                    quantity:orderProducts[0].quantity,
+                    vendorIds:[25]
+    
+                }
+                console.log("order: "+JSON.stringify(order));
+                console.log("orderproduct: "+JSON.stringify(orderProducts))
+                console.log("vendorIds: "+JSON.stringify(vendorIds))
+                saveOrder(order).then((response)=>{
+
+                    console.log("order kaydedildi: "+JSON.stringify(response))
+                })
+            }
+           
+        }
+
+    },[isPressConfirm])
 
     useEffect(()=>{
         getCustomerByEmail(email).then((response)=>{

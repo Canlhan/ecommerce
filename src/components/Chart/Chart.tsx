@@ -7,7 +7,7 @@ import Usefetchdata from '../../customHooks/Usefetchdata';
 import { createCart } from '../../service/cartService/chartService';
 import { getCustomerByEmail } from '../../service/customerService/CustomerService';
 import { chartActions } from '../../store/chart-slice';
-import style from  './chart.module.css'
+import style from  './chart.module.css';
 import ChartCardItem from './ChartCardItem';
 import { CartProductRequest } from '../models/CartProductRequest';
 import { saveChartProducts } from '../../service/cartProductservice/CartProductService';

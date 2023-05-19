@@ -2,7 +2,7 @@ import React,{ createContext,useState } from "react";
 
 const CustomerContext=React.createContext({
 
-    customer:null
+    customer:{id:0}
 });
 
 
