@@ -3,7 +3,8 @@
 
 
 
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import VendorContext from '../../context/vendorContext';
 import OrderAcceptFeedback from './feedbacks/OrderAcceptFeedback';
 import OrderItem from './orderitems/OrderItem';
 import style from './ProductOrderAccept.module.css'
@@ -12,9 +13,11 @@ import style from './ProductOrderAccept.module.css'
 const ProductOrderAccept = () => {
     const BASE_URL="https://localhost:44301/api/";
     const[isConfirmOrder,setConfirm]=useState(false);
+    const{vendor}=useContext(VendorContext);
+
+    console.log("vendor: "+JSON.stringify(vendor));
 
     const[orderedProducts,setProduct]=useState([]);
-
     const vendorId=localStorage.getItem("sellerId");
 
     const getOrderedProduct=async ()=>{
@@ -29,7 +32,8 @@ const ProductOrderAccept = () => {
     }
 
     useEffect(()=>{
-        getOrderedProduct();
+       
+        setProduct(vendor.orders)
 
     },[])
     const  changeConfirmTrue=()=>{

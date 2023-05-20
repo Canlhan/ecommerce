@@ -1,24 +1,25 @@
 
 import React,{ createContext,useState } from "react";
+import { CartProduct } from "../components/models/CartProduct";
 
 
 import { VendorProduct } from "../components/models/VendorProduct";
 
 
 interface ChartProductContextType{
-  chartProducts: VendorProduct[];
+  chartProducts: CartProduct[];
   isTrigger: boolean;
-  removeFromCart:(item:VendorProduct)=>void;
-  addToCart:(item:VendorProduct)=>void;
+  removeFromCart:(item:CartProduct)=>void;
+  addToCart:(item:CartProduct)=>void;
   trigger:()=>void;
 }
 
 const ChartProductsContext=React.createContext<ChartProductContextType>({
 
-  chartProducts: [],
+  chartProducts:[],
   isTrigger: false,
-  removeFromCart:(item:VendorProduct)=>{},
-  addToCart:(item:VendorProduct)=>{},
+  removeFromCart:(item:CartProduct)=>{},
+  addToCart:(item:CartProduct)=>{},
   trigger:()=>{},
 });
 
@@ -28,23 +29,23 @@ const ChartProductsContext=React.createContext<ChartProductContextType>({
 
 export const ChartProductsContextProvider=(props)=>{
 
-    const[chartProducts,setChartProducts]=useState<VendorProduct[]>([]);
+    const[chartProducts,setChartProducts]=useState<CartProduct[]>([]);
     const[isTrigger,setTrigger]=useState(false);
 
-    const addToCart = (item:VendorProduct) => {
+    const addToCart = (item:CartProduct) => {
       console.log("sepete eklendi ")
        setChartProducts((prev)=>{
          if(prev.includes(item)){
            console.log("giri")
-            return prev.filter((product)=>product.product.productName==item.product.productName);
+            return prev.filter((cartProduct)=>cartProduct.id==item.id);
          }
-         
+         console.log([...prev,item])
          return [...prev,item];
        })
       };
     
-      const removeFromCart = (item:VendorProduct) => {
-        setChartProducts(chartProducts.filter((i) => i.product.productName !== item.product.productName));
+      const removeFromCart = (item:CartProduct) => {
+        setChartProducts(chartProducts.filter((cartProduct) => cartProduct.id !== item.id));
       };
       const trigger=()=>{
 

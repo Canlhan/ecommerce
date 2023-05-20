@@ -11,6 +11,8 @@ import { AuthContextProvider } from './context/customerauth';
 import CustomerContext, { CustomerContextProvider } from './context/customerContext';
 import { VendorContextProvider } from './context/vendorContext.tsx';
 import { ChartProductsContextProvider } from './context/ChartProductContext';
+
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
@@ -28,8 +30,10 @@ root.render(
 
       
       <BrowserRouter>
-          <App />
+           <App />
       </BrowserRouter>
+     
+       
       </ChartProductsContextProvider>
 
   </VendorContextProvider>

@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
-import ChartProductsContext from '../../context/ChartProductContext';
+
 import CustomerContext from '../../context/customerContext';
 import Usefetchdata from '../../customHooks/Usefetchdata';
 import { createCart } from '../../service/cartService/chartService';
@@ -11,6 +11,8 @@ import style from  './chart.module.css';
 import ChartCardItem from './ChartCardItem';
 import { CartProductRequest } from '../models/CartProductRequest';
 import { saveChartProducts } from '../../service/cartProductservice/CartProductService';
+import ChartProductsContext from '../../context/ChartProductContext';
+import CartProductsContext from '../../context/CartProductsContext';
 const Chart = () => {
   const[cust,setCust]=useState({});
     const dispatch=useDispatch();
@@ -22,8 +24,10 @@ const Chart = () => {
 
     const[totalPrice,setTotalPrice]=useState(0);
     const[cartId,sertCartId]=useState<number>(0);
+
+    const{addToCart}=useContext(ChartProductsContext);
    
-    console.log("sepetteki ürüneler: "+JSON.stringify(products))
+   
     useEffect(()=>{
       getCustomerByEmail(email).then((response)=>{
         console.log("char email customer: "+JSON.stringify(response));
@@ -68,7 +72,16 @@ const Chart = () => {
      
       
   })  
-  saveChartProducts(cartProduct).then((response)=>response.data).catch((er)=>{
+  saveChartProducts(cartProduct).then((response)=>{
+    
+  
+    response.map((cartResponseData)=>{
+      addToCart(cartResponseData);
+    })
+    
+    console.log(JSON.stringify(response));
+  
+  }).catch((er)=>{
       console.log("chart product kaydedilirken hata oluştu")
     })
    }

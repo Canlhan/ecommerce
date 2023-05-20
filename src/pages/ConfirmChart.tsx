@@ -18,6 +18,10 @@ import { saveOrder } from '../service/order/OrderService'
 import CustomerContext from '../context/customerContext'
 
 
+import { CartProduct } from '../components/models/CartProduct'
+import ChartProductsContext from '../context/ChartProductContext'
+
+
 const ConfirmChart = (props) => {
     
     const cart=localStorage.getItem("cartId");
@@ -28,14 +32,15 @@ const ConfirmChart = (props) => {
     const products:VendorProduct[]=useSelector((state:any)=>state.chart.products);
     const totalPrice=useSelector((state:any)=>state.chart.sumPrice);
   
+    const {chartProducts}=useContext(ChartProductsContext);
     const email=localStorage.getItem("customerEmail");
     const[totalPriceConfirm,setTotalPrice]=useState(totalPrice);
 
     const {customer}=useContext(CustomerContext);
    
-  
+    console.log(chartProducts)
     const[cust,setCust]=useState({});
-    const customerId=localStorage.getItem("customerId");
+   // const customerId=localStorage.getItem("customerId");
 
     const[orderProducts,setOrderProducts]=useState<OrderProductRequest[]>([]);
     const[vendorIds,setVendorIds]=useState<number[]>([]);
@@ -48,16 +53,16 @@ const ConfirmChart = (props) => {
     const createOrders=()=>{
         console.log("sepete onaylaya basıldı")
         
-        products.map(product=>{
+        chartProducts.map(chartProduct=>{
             const orderProduct:OrderProductRequest=
             {
-                quantity:product.quantity,
-                vendorProductId:product.id
+                quantity:chartProduct.quantity,
+                cartProductId:chartProduct.id
             };
-            setVendorIds((prev)=>[...prev,product.vendor.id]);
+            setVendorIds((prev)=>[...prev,chartProduct.vendorProduct.vendor.id]);
             setOrderProducts((prev)=>[...prev, orderProduct]);
 
-            console.log("product in CONFİRM CART: "+JSON.stringify(product));
+            console.log("product in CONFİRM CART: "+JSON.stringify(chartProduct));
             console.log("orderProduct in CONFİRM CART: "+JSON.stringify(orderProduct));
 
         })
@@ -79,7 +84,7 @@ const ConfirmChart = (props) => {
                     customerId:customer.id,
                     orderProducts:orderProducts,
                     quantity:orderProducts[0].quantity,
-                    vendorIds:[25]
+                    vendorIds:vendorIds
     
                 }
                 console.log("order: "+JSON.stringify(order));

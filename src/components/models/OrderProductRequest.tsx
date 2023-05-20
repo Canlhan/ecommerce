@@ -4,5 +4,5 @@
 export interface OrderProductRequest{
 
     quantity:number,
-    vendorProductId:number
+    cartProductId:number
 }

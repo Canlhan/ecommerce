@@ -1,7 +1,7 @@
 import React, { Fragment, useContext, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ChartProductsContext from '../../../context/ChartProductContext';
+
 import Usepostdata from '../../../customHooks/Usepostdata';
 import { addChartProduct } from '../../../service/cartService/chartService';
 import { chartActions } from '../../../store/chart-slice';
@@ -10,7 +10,7 @@ import Shoesize from './Shoesize'
 const CategoryProductCardItem = ({styles,product}) => {
     
   
-    const{addToCart,trigger}=useContext(ChartProductsContext);
+   
     const dispatch=useDispatch();
     const isOpenChart=useSelector(state=>state.chart.isOpenChart);
    
