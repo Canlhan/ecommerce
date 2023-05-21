@@ -9,6 +9,7 @@ import { saveVendorProduct } from '../../service/vendorProductService/VendorProd
 import { Category } from '../models/Category';
 import { Product } from '../models/Product';
 import { VendorProduct } from '../models/VendorProduct';
+import { VendorProductRequest } from '../models/VendorProductRequest';
 
 const AddProduct = ({style}) => 
 {   
@@ -59,7 +60,7 @@ const AddProduct = ({style}) =>
        }
        
       // const vendorProduct:VendorProduct={...data,productPhoto:null,vendor:vendor};
-      const vendorProduct:VendorProduct={
+      const vendorProduct:VendorProductRequest={
           description:data.description,
           price:data.price,
           product:product,

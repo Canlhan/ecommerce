@@ -16,17 +16,17 @@ const ProductStock = () => {
 
 
     const [isUpdate,setUpdate]=useState(false);
-    const[getvendorProducts,setVendorProducts]=useState([]);
+    const[vendorProducts,setVendorProducts]=useState([]);
     const vendorId=localStorage.getItem("sellerId");
     const[isYes,setYes]=useState(false);
 
     const {vendor}=useContext(VendorContext);
-    
+    console.log("vendor id: "+JSON.stringify(vendor));
     const getVendorProducts=()=>{
 
         getVendorProductsByVendorId(vendor.id).then((response)=>{
 
-           
+           console.log("vendorproducts: "+JSON.stringify(response))
           
            setVendorProducts(response)
            
@@ -41,17 +41,13 @@ const ProductStock = () => {
         getVendorProducts();
     },[])
 
-const getVendorProductId=()=>{
-
-
-    }
-
-        const changeUpdateTrue=()=>{
+     const changeUpdateTrue=()=>{
             setUpdate(true);
-        }
-        const changeUpdateFalse=()=>{
+    }
+    const changeUpdateFalse=()=>{
             setUpdate(false);
         }
+
   return (
    <>
    
@@ -76,7 +72,7 @@ const getVendorProductId=()=>{
                      
                      {
                         
-                         getvendorProducts.map((vendorProduct)=>{
+                        vendorProducts.map((vendorProduct)=>{
 
                             
                             return  <VendorProduct yes={isYes} key={vendorProduct.id} vendorProduct={vendorProduct}  updated={changeUpdateTrue} style={style}/> 

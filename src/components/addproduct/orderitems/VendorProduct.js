@@ -7,7 +7,7 @@ const VendorProduct = ({style,updated,vendorProduct,yes}) => {
 
 const decreases=useRef();
 
-  const[stock,setStock]=useState(vendorProduct.product.unitInStock);
+  const[stock,setStock]=useState(vendorProduct.quantity);
 
   
 

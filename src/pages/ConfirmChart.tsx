@@ -53,12 +53,16 @@ const ConfirmChart = (props) => {
     const createOrders=()=>{
         console.log("sepete onaylaya basıldı")
         
+        console.log("charrpoduc: "+chartProducts)
+        
         chartProducts.map(chartProduct=>{
+            console.log("cart product quantity: "+chartProduct.quantity)
             const orderProduct:OrderProductRequest=
             {
                 quantity:chartProduct.quantity,
                 cartProductId:chartProduct.id
             };
+            console.log("vendor id burada burada: "+JSON.stringify(chartProduct.vendorProduct.vendor))
             setVendorIds((prev)=>[...prev,chartProduct.vendorProduct.vendor.id]);
             setOrderProducts((prev)=>[...prev, orderProduct]);
 
@@ -83,7 +87,6 @@ const ConfirmChart = (props) => {
                 const order:Order={
                     customerId:customer.id,
                     orderProducts:orderProducts,
-                    quantity:orderProducts[0].quantity,
                     vendorIds:vendorIds
     
                 }

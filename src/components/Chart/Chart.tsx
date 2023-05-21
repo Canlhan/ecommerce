@@ -20,6 +20,7 @@ const Chart = () => {
     const {customer}=useContext(CustomerContext);
     const email=localStorage.getItem("customerEmail");
 
+    const[isCustomerGet,setCustomerGet]=useState(false);
     const products=useSelector((state:any)=>state.chart.products);
 
     const[totalPrice,setTotalPrice]=useState(0);
@@ -27,11 +28,13 @@ const Chart = () => {
 
     const{addToCart}=useContext(ChartProductsContext);
    
+    console.log("customer in cart: "+JSON.stringify(customer))
    
     useEffect(()=>{
       getCustomerByEmail(email).then((response)=>{
-        console.log("char email customer: "+JSON.stringify(response));
+        console.log("char email customer: "+JSON.stringify(customer));
         setCust(response);
+        setCustomerGet(true);
       });
     },[])
       
@@ -49,14 +52,14 @@ const Chart = () => {
    const gotoconfirm=()=>{
 
     dispatch(chartActions.SetSumPrice(totalPrice))
-    createCart(cust,products).then((response)=>{
+    createCart(customer,products).then((response)=>{
       
       
-     let cartProduct:CartProductRequest={cartId:response.id,quantity:1,vendorProducts:[]};
+     let cartProduct:CartProductRequest={cartId:response.id,quantity:1,vendorProductsIds:[]};
      saveAllChartProducts(cartProduct);
     
     }).catch((er)=>{
-      console.log("sepet yaratılırken hata oluştu....")
+      console.log("sepet yaratılırken hata oluştu...."+er)
     })
     
    }
@@ -66,24 +69,28 @@ const Chart = () => {
       console.log("map içinde")
       cartProduct.quantity=product.quantity;
       const {id,vndproduct}=product;
-      cartProduct.vendorProducts.push({id:id});
+    
+      cartProduct.vendorProductsIds.push(id);
 
-      console.log("cartproduct oluşturuldu : "+JSON.stringify(cartProduct.vendorProducts))
+      console.log("cartproduct oluşturuldu : "+JSON.stringify(cartProduct))
+      if(isCustomerGet){
+        saveChartProducts(cartProduct).then((response)=>{
+    
+  
+          response.map((cartResponseData)=>{
+            addToCart(cartResponseData);
+          })
+          
+          console.log(JSON.stringify(response));
+        
+        }).catch((er)=>{
+            console.log("chart product kaydedilirken hata oluştu")
+          })
+      } 
      
       
-  })  
-  saveChartProducts(cartProduct).then((response)=>{
-    
+    })  
   
-    response.map((cartResponseData)=>{
-      addToCart(cartResponseData);
-    })
-    
-    console.log(JSON.stringify(response));
-  
-  }).catch((er)=>{
-      console.log("chart product kaydedilirken hata oluştu")
-    })
    }
 
     useEffect(()=>{

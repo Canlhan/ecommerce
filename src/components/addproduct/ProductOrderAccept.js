@@ -15,7 +15,7 @@ const ProductOrderAccept = () => {
     const[isConfirmOrder,setConfirm]=useState(false);
     const{vendor}=useContext(VendorContext);
 
-    console.log("vendor: "+JSON.stringify(vendor));
+    //console.log("vendor: "+JSON.stringify(vendor));
 
     const[orderedProducts,setProduct]=useState([]);
     const vendorId=localStorage.getItem("sellerId");
