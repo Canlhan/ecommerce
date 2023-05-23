@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 import { getChartProductsById } from '../../../service/cartProductservice/CartProductService';
 import { getVendorProductById } from '../../../service/vendorProductService/VendorProductService';
 
-const OrderItem = ({style,order,changeConfirm}) => {
+const OrderItem = ({style,orderProduct,changeConfirm}) => {
   const BASE_URL="https://localhost:44301/api/";
   const[orderProducts,setOrderProducts]=useState([]);
   const[vendorProductIds,setCartProductIds]=useState([]);
@@ -15,28 +15,40 @@ const OrderItem = ({style,order,changeConfirm}) => {
        setClick(true);
 
     }
+
+    //console.log("order item içindekiri orderProuct: "+JSON.stringify(orderProduct))
     const confirmorder=async()=>{
 
-      const url=BASE_URL+`OrderedProduct/update/${order.orderID}`
+      const url=BASE_URL+`OrderedProduct/update/${orderProduct.orderID}`
       const result=await fetch(url);
     const resultjson= await result.json();
     console.log(resultjson);
 
     }
-    console.log("customer name: "+JSON.stringify());
+  
     useEffect(()=>{
-      console.log("orderProducts: "+JSON.stringify(order.orderProducts))
-      order.orderProducts.map((orderProduct)=>{
+     // console.log("orderProducts: "+JSON.stringify(orderProduct))
+
+      orderProduct.orderProducts.map((orderProduct)=>{
         setCartProductIds((prev)=>[...prev,orderProduct.cartProduct])
 
-          console.log("id: "+JSON.stringify(orderProduct))
-        getChartProductsById(orderProduct.cartProduct.id).then((response)=>{
+          console.log("orderproduct")
+        getChartProductsById(orderProduct.cartProduct).then((response)=>{
 
-         console.log("cartproduct: "+JSON.stringify(response));
-          setOrderProducts((prev)=>[...prev,{productName:response.vendorProduct.product.productName}])
+              // console.log("cartproduct: "+JSON.stringify(response));
+
+
+              setOrderProducts((prev)=>[...prev,{quantity:response.quantity,productName:response.vendorProduct.product.productName}])
+
+
+
+
         })
         .catch((er)=>{
+
+
           console.log("chart product is not getting according to id ")
+
         })
 
         /*
@@ -50,6 +62,7 @@ const OrderItem = ({style,order,changeConfirm}) => {
      
       
     },[])
+    console.log("order product yep yeni:"+JSON.stringify(orderProducts))
 
     //cartproductslar yine id ile geliyor sen onları ayrı bir call yaparak herbir id ye göre cartproduct çekip bilgileirni koycan artık 
     useEffect(()=>{
@@ -58,21 +71,23 @@ const OrderItem = ({style,order,changeConfirm}) => {
         }
       
     },[clickk])
+    let index=0;
 
   return (
     <>
 
                         <tr >
                           {
-                           orderProducts.map((orderProduct)=>{
-                              
+                           orderProducts.map((orderedProduct)=>{
+                             index=index+1;
+                              console.log("orderProduct map içinde: "+"index: "+index+JSON.stringify(orderedProduct))
                               return <> 
-                              <td>{order.customer.firstName}</td>
-                              <td>{orderProduct.productName}</td>
-                              <td>{orderProduct.quantity}</td>
+                              <td>{orderProduct.customer.firstName}</td>
+                              <td>{orderedProduct.productName}</td>
+                              <td>{orderedProduct.quantity}</td>
                               
                               
-                              <td>{order.dateCreated}</td>
+                              <td>{orderProduct.dateCreated}</td>
                            
                               <br/>
                               </>

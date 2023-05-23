@@ -5,20 +5,12 @@ import Navbar from '../components/navbar/Navbar'
 import '../components/Chart/chart.module.css'
 import style from  './confirmChart.module.css'
 import Footer from '../components/homepageother/Footer'
-import { useLocation } from 'react-router-dom'
 import { getCustomerByEmail } from '../service/customerService/CustomerService'
-import { createCart } from '../service/cartService/chartService'
-
-import { saveChartProducts } from '../service/cartProductservice/CartProductService'
 import { VendorProduct } from '../components/models/VendorProduct'
-import { CartProductRequest } from '../components/models/CartProductRequest'
 import { OrderProductRequest } from '../components/models/OrderProductRequest'
 import { Order } from '../components/models/Order'
 import { saveOrder } from '../service/order/OrderService'
 import CustomerContext from '../context/customerContext'
-
-
-import { CartProduct } from '../components/models/CartProduct'
 import ChartProductsContext from '../context/ChartProductContext'
 
 
@@ -32,7 +24,7 @@ const ConfirmChart = (props) => {
     const products:VendorProduct[]=useSelector((state:any)=>state.chart.products);
     const totalPrice=useSelector((state:any)=>state.chart.sumPrice);
   
-    const {chartProducts}=useContext(ChartProductsContext);
+    const {chartProducts,cleanTheCartProducts}=useContext(ChartProductsContext);
     const email=localStorage.getItem("customerEmail");
     const[totalPriceConfirm,setTotalPrice]=useState(totalPrice);
 
@@ -53,7 +45,7 @@ const ConfirmChart = (props) => {
     const createOrders=()=>{
         console.log("sepete onaylaya basıldı")
         
-        console.log("charrpoduc: "+chartProducts)
+        console.log("charrpoduc: "+JSON.stringify(chartProducts))
         
         chartProducts.map(chartProduct=>{
             console.log("cart product quantity: "+chartProduct.quantity)
@@ -63,7 +55,18 @@ const ConfirmChart = (props) => {
                 cartProductId:chartProduct.id
             };
             console.log("vendor id burada burada: "+JSON.stringify(chartProduct.vendorProduct.vendor))
-            setVendorIds((prev)=>[...prev,chartProduct.vendorProduct.vendor.id]);
+            setVendorIds((prev)=>
+            {
+
+                if(prev.includes(chartProduct.vendorProduct.vendor.id)){
+                    return[...prev]
+                }
+            return  [...prev,chartProduct.vendorProduct.vendor.id]
+            
+        
+            });
+                
+            
             setOrderProducts((prev)=>[...prev, orderProduct]);
 
             console.log("product in CONFİRM CART: "+JSON.stringify(chartProduct));
@@ -96,6 +99,7 @@ const ConfirmChart = (props) => {
                 saveOrder(order).then((response)=>{
 
                     console.log("order kaydedildi: "+JSON.stringify(response))
+                    cleanTheCartProducts();
                 })
             }
            

@@ -4,6 +4,7 @@
 
 
 import React, { useContext, useEffect, useState } from 'react'
+import { JsxEmit } from 'typescript';
 import VendorContext from '../../context/vendorContext';
 import OrderAcceptFeedback from './feedbacks/OrderAcceptFeedback';
 import OrderItem from './orderitems/OrderItem';
@@ -11,8 +12,7 @@ import style from './ProductOrderAccept.module.css'
 
 
 const ProductOrderAccept = () => {
-    const BASE_URL="https://localhost:44301/api/";
-    const[isConfirmOrder,setConfirm]=useState(false);
+   
     const{vendor}=useContext(VendorContext);
 
     //console.log("vendor: "+JSON.stringify(vendor));
@@ -20,29 +20,20 @@ const ProductOrderAccept = () => {
     const[orderedProducts,setProduct]=useState([]);
     const vendorId=localStorage.getItem("sellerId");
 
-    const getOrderedProduct=async ()=>{
-
-        const url=BASE_URL+`OrderedProduct/getbyorderedproduct/${vendorId}`
-      const result=await fetch(url);
-      const json=await result.json();
-      const orderedProducts=json.data;
-     
-      setProduct(orderedProducts);
-      
-    }
-
+   
+   
     useEffect(()=>{
-       
-        setProduct(vendor.orders)
+        console.log("vendor orders: "+JSON.stringify(vendor.orders))
+        setProduct([...vendor.orders])
 
     },[])
     const  changeConfirmTrue=()=>{
 
-        setConfirm(true);
+        
     }
 
     const changeConfirmFalse=()=>{
-        setConfirm(false);
+       
     }
     // orders get
 
@@ -69,9 +60,10 @@ const ProductOrderAccept = () => {
                         
 
                         {
-                            orderedProducts.map((ordereProduct)=>{
+                            vendor.orders.map((orderedProduct)=>{
 
-                                return <OrderItem order={ordereProduct} style={style} changeConfirm={changeConfirmTrue}/>
+                                console.log("accept order: "+JSON.stringify(orderedProduct))
+                                return <OrderItem key={orderedProduct.id} orderProduct={orderedProduct} style={style} changeConfirm={changeConfirmTrue}/>
                             })
                         }
                         

@@ -12,6 +12,7 @@ interface ChartProductContextType{
   removeFromCart:(item:CartProduct)=>void;
   addToCart:(item:CartProduct)=>void;
   trigger:()=>void;
+  cleanTheCartProducts:()=>void;
 }
 
 const ChartProductsContext=React.createContext<ChartProductContextType>({
@@ -21,6 +22,7 @@ const ChartProductsContext=React.createContext<ChartProductContextType>({
   removeFromCart:(item:CartProduct)=>{},
   addToCart:(item:CartProduct)=>{},
   trigger:()=>{},
+  cleanTheCartProducts:()=>{}
 });
 
 
@@ -44,6 +46,9 @@ export const ChartProductsContextProvider=(props)=>{
        })
       };
     
+      const cleanTheCartProducts=()=>{
+        setChartProducts([]);
+      }
       const removeFromCart = (item:CartProduct) => {
         setChartProducts(chartProducts.filter((cartProduct) => cartProduct.id !== item.id));
       };
@@ -53,7 +58,7 @@ export const ChartProductsContextProvider=(props)=>{
       }
    
 
-    return <ChartProductsContext.Provider value={{chartProducts,removeFromCart,addToCart,trigger,isTrigger}}>
+    return <ChartProductsContext.Provider value={{chartProducts,removeFromCart,addToCart,trigger,isTrigger,cleanTheCartProducts}}>
 
         {props.children}
     </ChartProductsContext.Provider>

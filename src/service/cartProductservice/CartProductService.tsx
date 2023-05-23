@@ -23,11 +23,15 @@ export async function saveChartProducts(chartProduct:CartProductRequest)
 export async function getChartProductsById(chartProductId:any)
 {
   let chartProductIdNew;
-  if(chartProductId!=undefined){
-    chartProductIdNew=chartProductId;
+  
+  if(chartProductId==undefined){
+    
+    chartProductIdNew=chartProductId.id;
+  }else{
+    chartProductIdNew=chartProductId
   }
-  chartProductId=chartProductId.id;
-  console.log("cart productlat kaydediliyor"+JSON.stringify(chartProductId))
+  
+  //console.log("dfgdfgdfg"+JSON.stringify(chartProductId))
     const token=localStorage.getItem("token");
     
     const headers = {

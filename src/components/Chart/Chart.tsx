@@ -12,7 +12,7 @@ import ChartCardItem from './ChartCardItem';
 import { CartProductRequest } from '../models/CartProductRequest';
 import { saveChartProducts } from '../../service/cartProductservice/CartProductService';
 import ChartProductsContext from '../../context/ChartProductContext';
-import CartProductsContext from '../../context/CartProductsContext';
+
 const Chart = () => {
   const[cust,setCust]=useState({});
     const dispatch=useDispatch();
@@ -73,11 +73,14 @@ const Chart = () => {
       cartProduct.vendorProductsIds.push(id);
 
       console.log("cartproduct oluşturuldu : "+JSON.stringify(cartProduct))
-      if(isCustomerGet){
+      console.log(isCustomerGet)
+     
         saveChartProducts(cartProduct).then((response)=>{
     
-  
+          
+          console.log("response carprdocut kaydedilmesingen delen : "+JSON.stringify(response))
           response.map((cartResponseData)=>{
+            console.log("response charprodcut olarak kaydedilcek: "+JSON.stringify(cartResponseData))
             addToCart(cartResponseData);
           })
           
@@ -86,7 +89,7 @@ const Chart = () => {
         }).catch((er)=>{
             console.log("chart product kaydedilirken hata oluştu")
           })
-      } 
+      
      
       
     })  
