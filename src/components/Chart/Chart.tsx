@@ -52,7 +52,8 @@ const Chart = () => {
    const gotoconfirm=()=>{
 
     dispatch(chartActions.SetSumPrice(totalPrice))
-    createCart(customer,products).then((response)=>{
+    /*
+    createCart(customer).then((response)=>{
       
       
      let cartProduct:CartProductRequest={cartId:response.id,quantity:1,vendorProductsIds:[]};
@@ -61,13 +62,13 @@ const Chart = () => {
     }).catch((er)=>{
       console.log("sepet yaratılırken hata oluştu...."+er)
     })
-    
+    */
    }
-
+    
    const saveAllChartProducts=(cartProduct)=>{
     products.map((product)=>{
       console.log("map içinde")
-      cartProduct.quantity=product.quantity;
+      cartProduct.quantity=1;
       const {id,vndproduct}=product;
     
       cartProduct.vendorProductsIds.push(id);
@@ -124,7 +125,7 @@ const Chart = () => {
              :
              products.map((product)=> <li key={product.id} className={style.shopping_cart_product}>
             
-             <ChartCardItem product={product} /> </li>)
+             <ChartCardItem chartProduct={product} /> </li>)
            
            
          

@@ -23,9 +23,9 @@ export async function saveChartProducts(chartProduct:CartProductRequest)
 export async function getChartProductsById(chartProductId:any)
 {
   let chartProductIdNew;
-  
-  if(chartProductId==undefined){
-    
+  console.log("id cartprocut: "+JSON.stringify(chartProductId))
+  if(typeof chartProductId=='object'){
+    console.log("id cartprocut id : "+JSON.stringify(chartProductId.id))
     chartProductIdNew=chartProductId.id;
   }else{
     chartProductIdNew=chartProductId
@@ -39,8 +39,8 @@ export async function getChartProductsById(chartProductId:any)
      
     }
     
-   
-    const response=await axios.get(`http://localhost:8089/api/v1/cartproducts/${chartProductId}`,{headers});
+   console.log("yeni id son defa: "+chartProductIdNew)
+    const response=await axios.get(`http://localhost:8089/api/v1/cartproducts/${chartProductIdNew}`,{headers});
     console.log("cart productlat kaydedildi")
   
     return response.data;

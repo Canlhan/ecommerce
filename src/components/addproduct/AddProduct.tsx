@@ -4,13 +4,14 @@ import { useSelector } from 'react-redux';
 import VendorContext from '../../context/vendorContext';
 import { getAllCategories } from '../../service/categoryService/CategoryService';
 import { saveVendorProduct } from '../../service/vendorProductService/VendorProductService';
-
-
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import { Category } from '../models/Category';
 import { Product } from '../models/Product';
 import { VendorProduct } from '../models/VendorProduct';
 import { VendorProductRequest } from '../models/VendorProductRequest';
-
+import firebase from 'firebase/app';
+import{getStorage,ref, uploadBytes} from 'firebase/storage';
 const AddProduct = ({style}) => 
 {   
     useEffect(()=>{
@@ -21,7 +22,7 @@ const AddProduct = ({style}) =>
         });
     },[])
 
-
+    
     
     const formdata:FormData=new FormData();
 
@@ -40,13 +41,42 @@ const AddProduct = ({style}) =>
     const {vendor}=useContext(VendorContext);
    
     const backref = useRef<HTMLDivElement>(null);
-    const[photo,setphoto]=useState<string>("");
+    const[photo,setphoto]=useState<Blob>();
     
    
+   
+   // Import the functions you need from the SDKs you need
 
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+        apiKey: "AIzaSyCiV2KNRqf9D7EYwO4cxZNKaS1IJo-sdFo",
+        authDomain: "ecommerce-feef4.firebaseapp.com",
+        projectId: "ecommerce-feef4",
+        storageBucket: "ecommerce-feef4.appspot.com",
+        messagingSenderId: "893245861405",
+        appId: "1:893245861405:web:d126ed614bd21210e720f4",
+        measurementId: "G-EFHSBECN7J"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      // Firebase'i başlatın
+    
+      const storage=getStorage(app)
+
+      // Yüklemek istediğiniz dosyayı seçin
+     // Dosyayı seçmek için uygun bir yöntem kullanın
+      
+      // Dosyayı Firebase Storage'a yükleyin
+     
    
     
-    const onsubmit=(data)=>{
+     const onsubmit=(data)=>{
        
        const category:Category[]=categories.filter((categorys)=>categorys.id==data.id);
        const product:Product={
@@ -59,13 +89,14 @@ const AddProduct = ({style}) =>
                 
        }
        
+       const{orders,...vendorremain}=vendor;
       // const vendorProduct:VendorProduct={...data,productPhoto:null,vendor:vendor};
       const vendorProduct:VendorProductRequest={
           description:data.description,
           price:data.price,
           product:product,
-          quantity:1,        
-          vendor:vendor
+          quantity:data.unitsInStock,        
+          vendor:{...vendorremain,orders:[]}
           
       }
       
@@ -77,7 +108,20 @@ const AddProduct = ({style}) =>
       saveVendorProduct(vendorProduct,token).then((response)=>{
           console.log("saved vendor"+response)
       })
-    
+      .catch((er)=>{
+
+        console.log("error: "+JSON.stringify(er))
+      })
+      
+      console.log("vendor id for image: "+vendorId)
+      const storageRef=ref(storage,`images/${product.productName}`)
+
+      if(photo !=undefined){
+        uploadBytes(storageRef,photo).then((response)=>{
+            alert("image başarılır")
+        })
+      }
+     
     }
 
     const fileinput=(e)=>{
@@ -87,41 +131,14 @@ const AddProduct = ({style}) =>
         if (backref.current) {
             backref.current.style.backgroundImage = `url("${URL.createObjectURL(e.target.files[0])}")`;
           }
-        
+          const image={images:e.target.files[0],vendor:vendorId}
+         
     }
     
 
     
 
-    const addProduct =async()=>{
-
-       
-        
-        const response = await fetch("",{
-            method:"POST",
-            headers:{
-                'Content-type':'application/json'
-            },
-            body:JSON.stringify(product)
-        })
-        .then((response) => {
-            if(response.ok){    
-                console.log("üürn ekleme başarılı")
-                setSucces(true);
-                return response.json();
-            }  
-        }
-        )
-        .then((data) => {
-            setAddedProduct(data.data);
-          console.log('Success:', data.data);
-        })
-        .catch((error) => {
-            alert(error.message);
-          console.error('Error:', error.message);
-          
-        });;
-    }
+    
 
     /*
     useEffect(()=>{

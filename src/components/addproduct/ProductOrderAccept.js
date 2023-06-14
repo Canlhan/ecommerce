@@ -62,7 +62,7 @@ const ProductOrderAccept = () => {
                         {
                             vendor.orders.map((orderedProduct)=>{
 
-                                console.log("accept order: "+JSON.stringify(orderedProduct))
+                                
                                 return <OrderItem key={orderedProduct.id} orderProduct={orderedProduct} style={style} changeConfirm={changeConfirmTrue}/>
                             })
                         }

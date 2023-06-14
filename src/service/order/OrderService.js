@@ -11,6 +11,9 @@ export async function saveOrder(data){
       Authorization: `Bearer ${token}`
      
     }
+    if(data.orderProducts==[]){
+      return " orderproduct boş api call yapılmadı"
+    }
     const response= await axios.post("http://localhost:8089/api/v1/order/",data,{headers});
     
    

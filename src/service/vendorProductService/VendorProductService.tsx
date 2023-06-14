@@ -6,6 +6,7 @@ import jwt_decode from 'jwt-decode';
 
 export async function  saveVendorProduct(data:any,token:any){
   
+  console.log(JSON.stringify(data))
     const headers = {
         Authorization: `Bearer ${token}`
        

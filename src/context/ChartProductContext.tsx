@@ -35,13 +35,15 @@ export const ChartProductsContextProvider=(props)=>{
     const[isTrigger,setTrigger]=useState(false);
 
     const addToCart = (item:CartProduct) => {
-      console.log("sepete eklendi ")
+      console.log("sepete eklenmek için gelen cartProduct:  "+JSON.stringify(item))
+
        setChartProducts((prev)=>{
+
          if(prev.includes(item)){
            console.log("giri")
-            return prev.filter((cartProduct)=>cartProduct.id==item.id);
+            return prev.filter((cartProduct)=>cartProduct.id!=item.id);
          }
-         console.log([...prev,item])
+         console.log(item)
          return [...prev,item];
        })
       };
@@ -49,8 +51,10 @@ export const ChartProductsContextProvider=(props)=>{
       const cleanTheCartProducts=()=>{
         setChartProducts([]);
       }
-      const removeFromCart = (item:CartProduct) => {
+      const removeFromCart = (item:any) => {
+        console.log("silinecek eeman: "+JSON.stringify(item))
         setChartProducts(chartProducts.filter((cartProduct) => cartProduct.id !== item.id));
+        console.log("silindikten sonra dizi içi :"+JSON.stringify(chartProducts))
       };
       const trigger=()=>{
 

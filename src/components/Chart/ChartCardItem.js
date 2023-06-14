@@ -1,26 +1,30 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useContext, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import ChartProductsContext from '../../context/ChartProductContext';
 import { chartActions } from '../../store/chart-slice';
 import style from './chart.module.css'
-const ChartCardItem = ({product}) => {
+const ChartCardItem = ({chartProduct}) => {
   
   
+  const{removeFromCart}=useContext(ChartProductsContext);
   
     const dispatch=useDispatch();
   
-    
+    //console.log("chart içindeki product değişkeni: "+JSON.stringify(chartProduct))
     
 
     const handleDeleteProduct=()=>{
         
-        dispatch(chartActions.deleteProduct(product.id));
-        console.log("product idd"+product.id);
+       dispatch(chartActions.deleteProduct(chartProduct.id));
+       console.log("dlete: "+JSON.stringify(chartProduct));
+      removeFromCart(chartProduct);
+        //console.log("product idd"+product.id);
     }
     const handleIncreaseQuantity=()=>{
       
        
-        dispatch(chartActions.IncreaseQuantity(product.id))
-        console.log("ürün idisi"+JSON.stringify(product.id));
+        dispatch(chartActions.IncreaseQuantity(chartProduct))
+        //console.log("ürün idisi"+JSON.stringify(product.id));
     
      
      
@@ -28,9 +32,9 @@ const ChartCardItem = ({product}) => {
     const handleDecreaseQuantity=()=>{
       
      
-        dispatch(chartActions.DecreaseQuantity(product.id))
+        dispatch(chartActions.DecreaseQuantity(chartProduct))
        
-        console.log("ürün idisi"+product.id);
+        //console.log("ürün idisi"+product.id);
       
       
       
@@ -43,12 +47,12 @@ const ChartCardItem = ({product}) => {
   return (
 
     <Fragment>
-        <div key={product.id} className="shopping_cart_product_picture"></div>
-                <p className={style.shopping_cart_product_name}>{product.product.productName}</p>
+        <div key={chartProduct.id} className="shopping_cart_product_picture"></div>
+                <p className={style.shopping_cart_product_name}>{chartProduct.product.productName}</p>
                 <div className={style.shopping_cart_product_quantity_setting}>
                     <input onClick={handleIncreaseQuantity} className={style.increase} type="button" value="-"/>
                     <span className={style.shopping_cart_product_number}>
-                      {product.quantity}
+                      {chartProduct.quantity}
                     
                     </span>
                     <input onClick={handleDecreaseQuantity} className={style.reduce} type="button" value="+"/>
@@ -57,7 +61,7 @@ const ChartCardItem = ({product}) => {
                 
                 <div className={style.shopping_cart_product_price_information}>
                     <span className={style.shopping_cart_product_price} data_price="87">
-                      {product.price}</span><span>TL</span>
+                      {chartProduct.price}</span><span>TL</span>
                 </div>
                 <i onClick={handleDeleteProduct} className={`far fa-trash-alt  ${style.shopping_cart_product_trash}`}></i>
     </Fragment>

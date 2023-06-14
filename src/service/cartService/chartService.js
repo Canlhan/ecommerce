@@ -24,7 +24,7 @@ export async function addChartProduct(cartProduct,cartId){
     return response.data;
 }
 
-export async function createCart(customer,products)
+export async function createCart(customer)
 {
     const token=localStorage.getItem("token");
  

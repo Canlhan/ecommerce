@@ -71,16 +71,14 @@ const OrderItem = ({style,orderProduct,changeConfirm}) => {
         }
       
     },[clickk])
-    let index=0;
-
+   
   return (
     <>
 
                         <tr >
                           {
                            orderProducts.map((orderedProduct)=>{
-                             index=index+1;
-                              console.log("orderProduct map içinde: "+"index: "+index+JSON.stringify(orderedProduct))
+                             
                               return <> 
                               <td>{orderProduct.customer.firstName}</td>
                               <td>{orderedProduct.productName}</td>
